@@ -1,0 +1,26 @@
+--- 
+title: "Frequently Asked Questions about R/RStudio"
+author: "Team #PsyTeachR"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Guide for psyTeachR course books."
+---
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'tidyverse', 'kableExtra'
+), 'packages.bib')
+
+```
+
+# Overview {-}
+
+This book contains answers to many Frequently Asked Questions received by the #PsyTeachR team.
+
+<!-- TODO: add editing instructions -->
