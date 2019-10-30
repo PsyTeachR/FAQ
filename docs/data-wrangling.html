@@ -155,6 +155,7 @@ all_data &lt;-<span class="st"> </span>todo <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imported =</span> <span class="kw">read_csv</span>(filename)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">unnest</span>(imported)</code></pre></div>
 <p>If there is preprocessing you need to do on each file before reading it in, you can write your own function and call that in place of <code>read_csv()</code>.</p>
+<p><em>October 30, 2019. -DB</em></p>
 </div>
 <div id="detecting-runs-in-a-sequence" class="section level2">
 <h2><span class="header-section-number">4.2</span> Detecting &quot;runs&quot; in a sequence</h2>
@@ -180,34 +181,34 @@ runsdata &lt;-<span class="st"> </span><span class="kw">tibble</span>(
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(subject, trial, stimulus)</code></pre></div>
 <p>Let's say you want to find the start and stop frames where <code>Z</code> appears in <code>stimulus</code>, and do this independently for each combination of <code>subject</code> and <code>trial</code>. Here's how <code>stimulus</code> looks for subject 1 and trial 1.</p>
-<pre><code>##  [1] &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot;
-## [18] &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;a&quot; &quot;a&quot;
-## [35] &quot;a&quot; &quot;c&quot; &quot;c&quot;</code></pre>
-<p>So here you can see that the first run of Zs is from frame 15 to 17, 32 and the second is from 30 to 32. We want to write a function that processes the data for each trial and results in a table like this:</p>
+<pre><code>##  [1] &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;d&quot;
+## [18] &quot;d&quot; &quot;d&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;a&quot; &quot;a&quot; &quot;b&quot;
+## [35] &quot;b&quot;</code></pre>
+<p>So here you can see that the first run of Zs is from frame 14 to 16, 31 and the second is from 29 to 31. We want to write a function that processes the data for each trial and results in a table like this:</p>
 <pre><code>## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;     &lt;int&gt;
-## 1       1     1     1          15        17
-## 2       1     1     2          30        32</code></pre>
+## 1       1     1     1          14        16
+## 2       1     1     2          29        31</code></pre>
 <p>The first thing to do is to add a logical vector to your tibble whose value is <code>TRUE</code> when the target value (e.g., <code>Z</code>) is present in the sequence, false otherwise.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">runsdata_tgt &lt;-<span class="st"> </span>runsdata <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_target =</span> (stimulus <span class="op">==</span><span class="st"> &quot;Z&quot;</span>))
 
 runsdata_tgt</code></pre></div>
-<pre><code>## # A tibble: 543 x 4
+<pre><code>## # A tibble: 521 x 4
 ##    subject trial stimulus is_target
 ##      &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;    
 ##  1       1     1 d        FALSE    
 ##  2       1     1 d        FALSE    
 ##  3       1     1 d        FALSE    
 ##  4       1     1 d        FALSE    
-##  5       1     1 b        FALSE    
-##  6       1     1 b        FALSE    
-##  7       1     1 b        FALSE    
-##  8       1     1 a        FALSE    
-##  9       1     1 a        FALSE    
-## 10       1     1 a        FALSE    
-## # … with 533 more rows</code></pre>
+##  5       1     1 a        FALSE    
+##  6       1     1 a        FALSE    
+##  7       1     1 a        FALSE    
+##  8       1     1 c        FALSE    
+##  9       1     1 c        FALSE    
+## 10       1     1 c        FALSE    
+## # … with 511 more rows</code></pre>
 <p>We want to iterate over subjects and trials. We'll start by creating a tibble with columns <code>is_target</code> nested into a column called <code>subtbl</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">runs_nest &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>stimulus) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># don&#39;t need it anymore</span>
@@ -219,11 +220,11 @@ s1t1
 
 <span class="kw">rle</span>(s1t1)</code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [12] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-## [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
-## [34] FALSE FALSE FALSE FALSE
+## [12] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [23] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+## [34] FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 14 3 12 3 5
+##   lengths: int [1:5] 13 3 12 3 4
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE</code></pre>
 <p>If that doesn't make sense, look at the help for <code>rle()</code> (type <code>?rle</code> in the console). Now we're ready to write our function, <code>detect_runs()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">detect_runs &lt;-<span class="st"> </span><span class="cf">function</span>(x) {  
@@ -243,8 +244,8 @@ s1t1
 <pre><code>## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
-## 1     1       15     17
-## 2     2       30     32</code></pre>
+## 1     1       14     16
+## 2     2       29     31</code></pre>
 <p>OK, now we're ready to run the function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>runs_nest <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">runstbl =</span> <span class="kw">map</span>(subtbl, detect_runs))
@@ -253,21 +254,21 @@ result</code></pre></div>
 <pre><code>## # A tibble: 15 x 4
 ##    subject trial         subtbl runstbl         
 ##      &lt;int&gt; &lt;int&gt; &lt;list&lt;df[,1]&gt;&gt; &lt;list&gt;          
-##  1       1     1       [37 × 1] &lt;tibble [2 × 3]&gt;
-##  2       1     2       [32 × 1] &lt;tibble [2 × 3]&gt;
+##  1       1     1       [35 × 1] &lt;tibble [2 × 3]&gt;
+##  2       1     2       [35 × 1] &lt;tibble [2 × 3]&gt;
 ##  3       1     3       [38 × 1] &lt;tibble [2 × 3]&gt;
-##  4       2     1       [38 × 1] &lt;tibble [2 × 3]&gt;
-##  5       2     2       [36 × 1] &lt;tibble [2 × 3]&gt;
-##  6       2     3       [39 × 1] &lt;tibble [2 × 3]&gt;
-##  7       3     1       [34 × 1] &lt;tibble [2 × 3]&gt;
-##  8       3     2       [34 × 1] &lt;tibble [2 × 3]&gt;
-##  9       3     3       [38 × 1] &lt;tibble [2 × 3]&gt;
-## 10       4     1       [32 × 1] &lt;tibble [2 × 3]&gt;
-## 11       4     2       [38 × 1] &lt;tibble [2 × 3]&gt;
-## 12       4     3       [41 × 1] &lt;tibble [2 × 3]&gt;
-## 13       5     1       [37 × 1] &lt;tibble [2 × 3]&gt;
-## 14       5     2       [36 × 1] &lt;tibble [2 × 3]&gt;
-## 15       5     3       [33 × 1] &lt;tibble [2 × 3]&gt;</code></pre>
+##  4       2     1       [34 × 1] &lt;tibble [2 × 3]&gt;
+##  5       2     2       [32 × 1] &lt;tibble [2 × 3]&gt;
+##  6       2     3       [38 × 1] &lt;tibble [2 × 3]&gt;
+##  7       3     1       [33 × 1] &lt;tibble [2 × 3]&gt;
+##  8       3     2       [35 × 1] &lt;tibble [2 × 3]&gt;
+##  9       3     3       [34 × 1] &lt;tibble [2 × 3]&gt;
+## 10       4     1       [35 × 1] &lt;tibble [2 × 3]&gt;
+## 11       4     2       [36 × 1] &lt;tibble [2 × 3]&gt;
+## 12       4     3       [32 × 1] &lt;tibble [2 × 3]&gt;
+## 13       5     1       [34 × 1] &lt;tibble [2 × 3]&gt;
+## 14       5     2       [33 × 1] &lt;tibble [2 × 3]&gt;
+## 15       5     3       [37 × 1] &lt;tibble [2 × 3]&gt;</code></pre>
 <p>Now we just have to unnest and we're done!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>subtbl) <span class="op">%&gt;%</span>
@@ -275,17 +276,18 @@ result</code></pre></div>
 <pre><code>## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
-##  1       1     1     1       15     17
-##  2       1     1     2       30     32
-##  3       1     2     1        9     11
-##  4       1     2     2       23     25
-##  5       1     3     1       15     17
-##  6       1     3     2       29     31
-##  7       2     1     1       12     14
-##  8       2     1     2       28     30
+##  1       1     1     1       14     16
+##  2       1     1     2       29     31
+##  3       1     2     1       14     16
+##  4       1     2     2       27     29
+##  5       1     3     1       13     15
+##  6       1     3     2       28     30
+##  7       2     1     1       11     13
+##  8       2     1     2       26     28
 ##  9       2     2     1       11     13
-## 10       2     2     2       27     29
+## 10       2     2     2       25     27
 ## # … with 20 more rows</code></pre>
+<p><em>October 30, 2019. -DB</em></p>
 
 </div>
 </div>

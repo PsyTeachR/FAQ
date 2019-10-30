@@ -15,6 +15,8 @@ all_data <- todo %>%
 
 If there is preprocessing you need to do on each file before reading it in, you can write your own function and call that in place of `read_csv()`.
 
+*October 30, 2019. -DB*
+
 ## Detecting "runs" in a sequence
 
 Let's say you have a table like below, and you want to find the start and end frames where you have a run of `Z` amidst a, b, c, d.  Here is code that sets up this kind of situation. Don't worry if you don't understand this code; just run it to create the example data in `runsdata`, and have a look at that table.
@@ -136,3 +138,4 @@ result %>%
 
 ```
 
+*October 30, 2019. -DB*
