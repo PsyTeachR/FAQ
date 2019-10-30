@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 4 Data Wrangling | Frequently Asked Questions about R/RStudio</title>
+  <meta name="description" content="Guide for psyTeachR course books." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 4 Data Wrangling | Frequently Asked Questions about R/RStudio" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Guide for psyTeachR course books." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 4 Data Wrangling | Frequently Asked Questions about R/RStudio" />
+  
+  <meta name="twitter:description" content="Guide for psyTeachR course books." />
+  
+
+<meta name="author" content="Team #PsyTeachR" />
+
+
+<meta name="date" content="2019-10-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="knitting-and-rmarkdown-files.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PsyTeachR Frequently Asked Questions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Installing R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#rtools"><i class="fa fa-check"></i><b>1.1</b> How do I install the R build tools?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="add-on-packages.html"><a href="add-on-packages.html"><i class="fa fa-check"></i><b>2</b> Add-On Packages</a><ul>
+<li class="chapter" data-level="2.1" data-path="add-on-packages.html"><a href="add-on-packages.html#why-cant-i-compile-packages-from-source"><i class="fa fa-check"></i><b>2.1</b> Why can't I compile packages from source?</a></li>
+<li class="chapter" data-level="2.2" data-path="add-on-packages.html"><a href="add-on-packages.html#xcrun"><i class="fa fa-check"></i><b>2.2</b> When I try to compile, I get the following error message:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html"><i class="fa fa-check"></i><b>3</b> Knitting and RMarkdown Files</a><ul>
+<li class="chapter" data-level="3.1" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit."><i class="fa fa-check"></i><b>3.1</b> Every time I knit, I get a message that packages are missing, and it won't knit.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#importing-data-from-multiple-files"><i class="fa fa-check"></i><b>4.1</b> Importing data from multiple files</a></li>
+<li class="chapter" data-level="4.2" data-path="data-wrangling.html"><a href="data-wrangling.html#detecting-runs-in-a-sequence"><i class="fa fa-check"></i><b>4.2</b> Detecting &quot;runs&quot; in a sequence</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Frequently Asked Questions about R/RStudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-wrangling" class="section level1">
+<h1><span class="header-section-number">Topic 4</span> Data Wrangling</h1>
+<div id="importing-data-from-multiple-files" class="section level2">
+<h2><span class="header-section-number">4.1</span> Importing data from multiple files</h2>
+<p>The following code allows you to read in a whole bunch of files from a directory <code>datadir</code> all at once into a big table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># &quot;\\.csv$&quot; = find all files ending with csv or CSV</span>
+todo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">filename =</span> <span class="kw">dir</span>(<span class="st">&quot;datadir&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.[Cc][Ss][Vv]$&quot;</span>))
+
+all_data &lt;-<span class="st"> </span>todo <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imported =</span> <span class="kw">read_csv</span>(filename)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unnest</span>(imported)</code></pre></div>
+<p>If there is preprocessing you need to do on each file before reading it in, you can write your own function and call that in place of <code>read_csv()</code>.</p>
+</div>
+<div id="detecting-runs-in-a-sequence" class="section level2">
+<h2><span class="header-section-number">4.2</span> Detecting &quot;runs&quot; in a sequence</h2>
+<p>Let's say you have a table like below, and you want to find the start and end frames where you have a run of <code>Z</code> amidst a, b, c, d. Here is code that sets up this kind of situation. Don't worry if you don't understand this code; just run it to create the example data in <code>runsdata</code>, and have a look at that table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)
+
+create_run_vec &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  ## create a random string of letters with two runs
+  <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),
+               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),
+               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),
+               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),
+               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dv">2</span>), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="ot">TRUE</span>)))
+}
+
+## 5 subjects, 3 trials each
+runsdata &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">subject =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each =</span> <span class="dv">3</span>),
+  <span class="dt">trial =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span>),
+  <span class="dt">stimulus =</span> <span class="kw">rerun</span>(<span class="dv">15</span>, <span class="kw">create_run_vec</span>())) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unnest</span>(stimulus) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(subject, trial) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(subject, trial, stimulus)</code></pre></div>
+<p>Let's say you want to find the start and stop frames where <code>Z</code> appears in <code>stimulus</code>, and do this independently for each combination of <code>subject</code> and <code>trial</code>. Here's how <code>stimulus</code> looks for subject 1 and trial 1.</p>
+<pre><code>##  [1] &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot;
+## [18] &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;a&quot; &quot;a&quot;
+## [35] &quot;a&quot; &quot;c&quot; &quot;c&quot;</code></pre>
+<p>So here you can see that the first run of Zs is from frame 15 to 17, 32 and the second is from 30 to 32. We want to write a function that processes the data for each trial and results in a table like this:</p>
+<pre><code>## # A tibble: 2 x 5
+##   subject trial   run start_frame end_frame
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;     &lt;int&gt;
+## 1       1     1     1          15        17
+## 2       1     1     2          30        32</code></pre>
+<p>The first thing to do is to add a logical vector to your tibble whose value is <code>TRUE</code> when the target value (e.g., <code>Z</code>) is present in the sequence, false otherwise.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">runsdata_tgt &lt;-<span class="st"> </span>runsdata <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_target =</span> (stimulus <span class="op">==</span><span class="st"> &quot;Z&quot;</span>))
+
+runsdata_tgt</code></pre></div>
+<pre><code>## # A tibble: 543 x 4
+##    subject trial stimulus is_target
+##      &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;    
+##  1       1     1 d        FALSE    
+##  2       1     1 d        FALSE    
+##  3       1     1 d        FALSE    
+##  4       1     1 d        FALSE    
+##  5       1     1 b        FALSE    
+##  6       1     1 b        FALSE    
+##  7       1     1 b        FALSE    
+##  8       1     1 a        FALSE    
+##  9       1     1 a        FALSE    
+## 10       1     1 a        FALSE    
+## # … with 533 more rows</code></pre>
+<p>We want to iterate over subjects and trials. We'll start by creating a tibble with columns <code>is_target</code> nested into a column called <code>subtbl</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">runs_nest &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>stimulus) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># don&#39;t need it anymore</span>
+<span class="st">  </span><span class="kw">nest</span>(<span class="dt">subtbl =</span> <span class="kw">c</span>(is_target))</code></pre></div>
+<p>We want to iterate over the little subtables stored within <code>subtbl</code> in each row of the table, passing the table to a function that will find the runs and return another table, which we'll store in new column. Let's write a function to detect the runs. That function will need the function <code>rle()</code> (Run-Length Encoding) from base R. We'll run that on the logical vector we created (<code>is_target</code>). Before creating the function, let's see what <code>rle()</code> does on the values in <code>is_target</code> for subject 1, trial 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s1t1 &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(subject <span class="op">==</span><span class="st"> </span>1L, trial <span class="op">==</span><span class="st"> </span>1L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(is_target)
+
+s1t1
+
+<span class="kw">rle</span>(s1t1)</code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [12] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+## [23] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+## [34] FALSE FALSE FALSE FALSE
+## Run Length Encoding
+##   lengths: int [1:5] 14 3 12 3 5
+##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE</code></pre>
+<p>If that doesn't make sense, look at the help for <code>rle()</code> (type <code>?rle</code> in the console). Now we're ready to write our function, <code>detect_runs()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">detect_runs &lt;-<span class="st"> </span><span class="cf">function</span>(x) {  
+  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.logical</span>(x[[<span class="dv">1</span>]])) <span class="kw">stop</span>(<span class="st">&quot;&#39;x&#39; must be a tibble whose first column is of type &#39;logical&#39;&quot;</span>)
+  runs &lt;-<span class="st"> </span><span class="kw">rle</span>(x[[<span class="dv">1</span>]])
+  run_start_fr &lt;-<span class="st"> </span><span class="kw">c</span>(1L, <span class="kw">cumsum</span>(runs<span class="op">$</span>lengths[<span class="op">-</span><span class="kw">length</span>(runs<span class="op">$</span>lengths)]) <span class="op">+</span><span class="st"> </span>1L)
+  run_end_fr &lt;-<span class="st"> </span>run_start_fr <span class="op">+</span><span class="st"> </span>(runs<span class="op">$</span>lengths <span class="op">-</span><span class="st"> </span>1L)
+  
+  tgt_start &lt;-<span class="st"> </span>run_start_fr[runs<span class="op">$</span>values]
+  tgt_end &lt;-<span class="st"> </span>run_end_fr[runs<span class="op">$</span>value]
+  <span class="kw">tibble</span>(<span class="dt">run =</span> <span class="kw">seq_along</span>(tgt_start),
+         <span class="dt">start_fr =</span> tgt_start,
+         <span class="dt">end_fr =</span> tgt_end)
+}</code></pre></div>
+<p>We can test the function on <code>s1t1</code> just to make sure it works.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">detect_runs</span>(<span class="kw">tibble</span>(<span class="dt">lvec =</span> s1t1))</code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##     run start_fr end_fr
+##   &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
+## 1     1       15     17
+## 2     2       30     32</code></pre>
+<p>OK, now we're ready to run the function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result &lt;-<span class="st"> </span>runs_nest <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">runstbl =</span> <span class="kw">map</span>(subtbl, detect_runs))
+
+result</code></pre></div>
+<pre><code>## # A tibble: 15 x 4
+##    subject trial         subtbl runstbl         
+##      &lt;int&gt; &lt;int&gt; &lt;list&lt;df[,1]&gt;&gt; &lt;list&gt;          
+##  1       1     1       [37 × 1] &lt;tibble [2 × 3]&gt;
+##  2       1     2       [32 × 1] &lt;tibble [2 × 3]&gt;
+##  3       1     3       [38 × 1] &lt;tibble [2 × 3]&gt;
+##  4       2     1       [38 × 1] &lt;tibble [2 × 3]&gt;
+##  5       2     2       [36 × 1] &lt;tibble [2 × 3]&gt;
+##  6       2     3       [39 × 1] &lt;tibble [2 × 3]&gt;
+##  7       3     1       [34 × 1] &lt;tibble [2 × 3]&gt;
+##  8       3     2       [34 × 1] &lt;tibble [2 × 3]&gt;
+##  9       3     3       [38 × 1] &lt;tibble [2 × 3]&gt;
+## 10       4     1       [32 × 1] &lt;tibble [2 × 3]&gt;
+## 11       4     2       [38 × 1] &lt;tibble [2 × 3]&gt;
+## 12       4     3       [41 × 1] &lt;tibble [2 × 3]&gt;
+## 13       5     1       [37 × 1] &lt;tibble [2 × 3]&gt;
+## 14       5     2       [36 × 1] &lt;tibble [2 × 3]&gt;
+## 15       5     3       [33 × 1] &lt;tibble [2 × 3]&gt;</code></pre>
+<p>Now we just have to unnest and we're done!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>subtbl) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unnest</span>(runstbl)</code></pre></div>
+<pre><code>## # A tibble: 30 x 5
+##    subject trial   run start_fr end_fr
+##      &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
+##  1       1     1     1       15     17
+##  2       1     1     2       30     32
+##  3       1     2     1        9     11
+##  4       1     2     2       23     25
+##  5       1     3     1       15     17
+##  6       1     3     2       29     31
+##  7       2     1     1       12     14
+##  8       2     1     2       28     30
+##  9       2     2     1       11     13
+## 10       2     2     2       27     29
+## # … with 20 more rows</code></pre>
+
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="knitting-and-rmarkdown-files.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
