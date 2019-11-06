@@ -2,14 +2,16 @@
 
 ## Importing data from multiple files
 
-The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.
+The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.  If the files are in the same directory as your script, replace `datadir` with a full stop, i.e., `dir(".", "\\.[Cc][Ss][Vv]$")`.
 
 ```{r read-them-all, eval = FALSE}
+library("tidyverse")
+
 # "\\.csv$" = find all files ending with csv or CSV
-todo <- tibble(filename = dir("datadir", "\\.[Cc][Ss][Vv]$"))
+todo <- tibble(filename = dir(".", "\\.[Cc][Ss][Vv]$"))
 
 all_data <- todo %>%
-  mutate(imported = read_csv(filename)) %>%
+  mutate(imported = map(filename, read_csv)) %>%
   unnest(imported)
 ```
 

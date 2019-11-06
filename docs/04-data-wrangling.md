@@ -3,15 +3,17 @@
 
 ## Importing data from multiple files
 
-The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.
+The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.  If the files are in the same directory as your script, replace `datadir` with a full stop, i.e., `dir(".", "\\.[Cc][Ss][Vv]$")`.
 
 
 ```r
+library("tidyverse")
+
 # "\\.csv$" = find all files ending with csv or CSV
-todo <- tibble(filename = dir("datadir", "\\.[Cc][Ss][Vv]$"))
+todo <- tibble(filename = dir(".", "\\.[Cc][Ss][Vv]$"))
 
 all_data <- todo %>%
-  mutate(imported = read_csv(filename)) %>%
+  mutate(imported = map(filename, read_csv)) %>%
   unnest(imported)
 ```
 
@@ -51,20 +53,20 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "c" "c" "c" "a" "a" "a" "b" "b" "b" "b" "d" "d" "Z" "Z" "Z" "b" "b"
-## [18] "b" "b" "d" "d" "a" "a" "a" "c" "c" "c" "Z" "Z" "Z" "d" "d" "d" "b"
-## [35] "b" "b"
+##  [1] "c" "c" "b" "b" "b" "b" "a" "a" "d" "d" "Z" "Z" "Z" "c" "c" "c" "c"
+## [18] "b" "b" "b" "b" "a" "a" "a" "d" "d" "d" "d" "Z" "Z" "Z" "a" "a" "a"
+## [35] "a" "b" "b" "b"
 ```
 
-So here you can see that the first run of Zs is from frame 13 to 15, 30 and the second is from 28 to 30. We want to write a function that processes the data for each trial and results in a table like this:
+So here you can see that the first run of Zs is from frame 11 to 13, 31 and the second is from 29 to 31. We want to write a function that processes the data for each trial and results in a table like this:
 
 
 ```
 ## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     <dbl> <dbl> <int>       <int>     <int>
-## 1       1     1     1          13        15
-## 2       1     1     2          28        30
+## 1       1     1     1          11        13
+## 2       1     1     2          29        31
 ```
 
 The first thing to do is to add a logical vector to your tibble whose value is `TRUE` when the target value (e.g., `Z`) is present in the sequence, false otherwise.
@@ -78,20 +80,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 539 x 4
+## # A tibble: 527 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
 ##  1       1     1 c        FALSE    
 ##  2       1     1 c        FALSE    
-##  3       1     1 c        FALSE    
-##  4       1     1 a        FALSE    
-##  5       1     1 a        FALSE    
-##  6       1     1 a        FALSE    
-##  7       1     1 b        FALSE    
-##  8       1     1 b        FALSE    
-##  9       1     1 b        FALSE    
-## 10       1     1 b        FALSE    
-## # … with 529 more rows
+##  3       1     1 b        FALSE    
+##  4       1     1 b        FALSE    
+##  5       1     1 b        FALSE    
+##  6       1     1 b        FALSE    
+##  7       1     1 a        FALSE    
+##  8       1     1 a        FALSE    
+##  9       1     1 d        FALSE    
+## 10       1     1 d        FALSE    
+## # … with 517 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -115,12 +117,12 @@ rle(s1t1)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [12] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [23] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
-## [34] FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+## [12]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [23] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+## [34] FALSE FALSE FALSE FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 12 3 12 3 6
+##   lengths: int [1:5] 10 3 15 3 7
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -153,8 +155,8 @@ detect_runs(tibble(lvec = s1t1))
 ## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   <int>    <int>  <int>
-## 1     1       13     15
-## 2     2       28     30
+## 1     1       11     13
+## 2     2       29     31
 ```
 
 OK, now we're ready to run the function.
@@ -171,20 +173,20 @@ result
 ## # A tibble: 15 x 4
 ##    subject trial         subtbl runstbl         
 ##      <int> <int> <list<df[,1]>> <list>          
-##  1       1     1       [36 × 1] <tibble [2 × 3]>
-##  2       1     2       [40 × 1] <tibble [2 × 3]>
-##  3       1     3       [34 × 1] <tibble [2 × 3]>
-##  4       2     1       [39 × 1] <tibble [2 × 3]>
-##  5       2     2       [36 × 1] <tibble [2 × 3]>
-##  6       2     3       [33 × 1] <tibble [2 × 3]>
-##  7       3     1       [33 × 1] <tibble [2 × 3]>
-##  8       3     2       [35 × 1] <tibble [2 × 3]>
-##  9       3     3       [31 × 1] <tibble [2 × 3]>
-## 10       4     1       [35 × 1] <tibble [2 × 3]>
-## 11       4     2       [36 × 1] <tibble [2 × 3]>
-## 12       4     3       [38 × 1] <tibble [2 × 3]>
-## 13       5     1       [40 × 1] <tibble [2 × 3]>
-## 14       5     2       [38 × 1] <tibble [2 × 3]>
+##  1       1     1       [38 × 1] <tibble [2 × 3]>
+##  2       1     2       [34 × 1] <tibble [2 × 3]>
+##  3       1     3       [33 × 1] <tibble [2 × 3]>
+##  4       2     1       [35 × 1] <tibble [2 × 3]>
+##  5       2     2       [35 × 1] <tibble [2 × 3]>
+##  6       2     3       [35 × 1] <tibble [2 × 3]>
+##  7       3     1       [31 × 1] <tibble [2 × 3]>
+##  8       3     2       [36 × 1] <tibble [2 × 3]>
+##  9       3     3       [32 × 1] <tibble [2 × 3]>
+## 10       4     1       [40 × 1] <tibble [2 × 3]>
+## 11       4     2       [39 × 1] <tibble [2 × 3]>
+## 12       4     3       [36 × 1] <tibble [2 × 3]>
+## 13       5     1       [36 × 1] <tibble [2 × 3]>
+## 14       5     2       [32 × 1] <tibble [2 × 3]>
 ## 15       5     3       [35 × 1] <tibble [2 × 3]>
 ```
 
@@ -201,16 +203,16 @@ result %>%
 ## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      <int> <int> <int>    <int>  <int>
-##  1       1     1     1       13     15
-##  2       1     1     2       28     30
-##  3       1     2     1       16     18
-##  4       1     2     2       30     32
-##  5       1     3     1       11     13
-##  6       1     3     2       27     29
-##  7       2     1     1       11     13
-##  8       2     1     2       29     31
-##  9       2     2     1       15     17
-## 10       2     2     2       30     32
+##  1       1     1     1       11     13
+##  2       1     1     2       29     31
+##  3       1     2     1       13     15
+##  4       1     2     2       26     28
+##  5       1     3     1       10     12
+##  6       1     3     2       25     27
+##  7       2     1     1       13     15
+##  8       2     1     2       28     30
+##  9       2     2     1       11     13
+## 10       2     2     2       27     29
 ## # … with 20 more rows
 ```
 
