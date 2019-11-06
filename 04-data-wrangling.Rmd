@@ -8,7 +8,7 @@ The following code allows you to read in a whole bunch of files from a directory
 library("tidyverse")
 
 # "\\.csv$" = find all files ending with csv or CSV
-todo <- tibble(filename = dir(".", "\\.[Cc][Ss][Vv]$"))
+todo <- tibble(filename = dir("datadir", "\\.[Cc][Ss][Vv]$"))
 
 all_data <- todo %>%
   mutate(imported = map(filename, read_csv)) %>%
