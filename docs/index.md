@@ -2,7 +2,7 @@
 --- 
 title: "Frequently Asked Questions about R/RStudio"
 author: "Team #PsyTeachR"
-date: "2019-10-30"
+date: "2019-11-06"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

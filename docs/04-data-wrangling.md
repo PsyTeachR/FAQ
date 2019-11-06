@@ -51,9 +51,9 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "d" "d" "d" "d" "a" "a" "a" "c" "c" "c" "c" "b" "b" "Z" "Z" "Z" "d"
-## [18] "d" "d" "c" "c" "c" "a" "a" "a" "b" "b" "b" "Z" "Z" "Z" "a" "a" "b"
-## [35] "b"
+##  [1] "c" "c" "c" "d" "d" "d" "d" "a" "a" "b" "b" "b" "b" "Z" "Z" "Z" "b"
+## [18] "b" "b" "a" "a" "a" "c" "c" "c" "d" "d" "d" "Z" "Z" "Z" "c" "c" "d"
+## [35] "d" "d"
 ```
 
 So here you can see that the first run of Zs is from frame 14 to 16, 31 and the second is from 29 to 31. We want to write a function that processes the data for each trial and results in a table like this:
@@ -78,20 +78,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 521 x 4
+## # A tibble: 534 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
-##  1       1     1 d        FALSE    
-##  2       1     1 d        FALSE    
-##  3       1     1 d        FALSE    
+##  1       1     1 c        FALSE    
+##  2       1     1 c        FALSE    
+##  3       1     1 c        FALSE    
 ##  4       1     1 d        FALSE    
-##  5       1     1 a        FALSE    
-##  6       1     1 a        FALSE    
-##  7       1     1 a        FALSE    
-##  8       1     1 c        FALSE    
-##  9       1     1 c        FALSE    
-## 10       1     1 c        FALSE    
-## # … with 511 more rows
+##  5       1     1 d        FALSE    
+##  6       1     1 d        FALSE    
+##  7       1     1 d        FALSE    
+##  8       1     1 a        FALSE    
+##  9       1     1 a        FALSE    
+## 10       1     1 b        FALSE    
+## # … with 524 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -118,9 +118,9 @@ rle(s1t1)
 ##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [12] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [23] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-## [34] FALSE FALSE
+## [34] FALSE FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 13 3 12 3 4
+##   lengths: int [1:5] 13 3 12 3 5
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -171,21 +171,21 @@ result
 ## # A tibble: 15 x 4
 ##    subject trial         subtbl runstbl         
 ##      <int> <int> <list<df[,1]>> <list>          
-##  1       1     1       [35 × 1] <tibble [2 × 3]>
-##  2       1     2       [35 × 1] <tibble [2 × 3]>
-##  3       1     3       [38 × 1] <tibble [2 × 3]>
-##  4       2     1       [34 × 1] <tibble [2 × 3]>
-##  5       2     2       [32 × 1] <tibble [2 × 3]>
-##  6       2     3       [38 × 1] <tibble [2 × 3]>
-##  7       3     1       [33 × 1] <tibble [2 × 3]>
+##  1       1     1       [36 × 1] <tibble [2 × 3]>
+##  2       1     2       [38 × 1] <tibble [2 × 3]>
+##  3       1     3       [34 × 1] <tibble [2 × 3]>
+##  4       2     1       [36 × 1] <tibble [2 × 3]>
+##  5       2     2       [37 × 1] <tibble [2 × 3]>
+##  6       2     3       [35 × 1] <tibble [2 × 3]>
+##  7       3     1       [36 × 1] <tibble [2 × 3]>
 ##  8       3     2       [35 × 1] <tibble [2 × 3]>
-##  9       3     3       [34 × 1] <tibble [2 × 3]>
-## 10       4     1       [35 × 1] <tibble [2 × 3]>
-## 11       4     2       [36 × 1] <tibble [2 × 3]>
-## 12       4     3       [32 × 1] <tibble [2 × 3]>
-## 13       5     1       [34 × 1] <tibble [2 × 3]>
+##  9       3     3       [32 × 1] <tibble [2 × 3]>
+## 10       4     1       [38 × 1] <tibble [2 × 3]>
+## 11       4     2       [41 × 1] <tibble [2 × 3]>
+## 12       4     3       [36 × 1] <tibble [2 × 3]>
+## 13       5     1       [35 × 1] <tibble [2 × 3]>
 ## 14       5     2       [33 × 1] <tibble [2 × 3]>
-## 15       5     3       [37 × 1] <tibble [2 × 3]>
+## 15       5     3       [32 × 1] <tibble [2 × 3]>
 ```
 
 Now we just have to unnest and we're done!
@@ -204,13 +204,13 @@ result %>%
 ##  1       1     1     1       14     16
 ##  2       1     1     2       29     31
 ##  3       1     2     1       14     16
-##  4       1     2     2       27     29
-##  5       1     3     1       13     15
-##  6       1     3     2       28     30
-##  7       2     1     1       11     13
+##  4       1     2     2       29     31
+##  5       1     3     1       12     14
+##  6       1     3     2       25     27
+##  7       2     1     1       12     14
 ##  8       2     1     2       26     28
-##  9       2     2     1       11     13
-## 10       2     2     2       25     27
+##  9       2     2     1       12     14
+## 10       2     2     2       28     30
 ## # … with 20 more rows
 ```
 

@@ -10,3 +10,11 @@ If you are not able to install packages from source, you are missing the build t
     - Go to <https://cran.r-project.org/bin/windows/Rtools>. Download and install the "recommended" version.
 
 *October 24, 2019. -DB*
+
+## I'm getting an error when I try to start up RStudio.
+
+### I am on a campus computer, and the error is: "Fatal error: unable to initialize the JIT"
+
+This is due to a bug in your campus profile. Please speak to the [IT Helpdesk](https://www.gla.ac.uk/myglasgow/it/helpdesk/){target="_blank"}.
+
+*November 6, 2019. -DB*
