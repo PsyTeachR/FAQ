@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Frequently Asked Questions about R/RStudio</title>
+  <title>Topic 5 Plotting | Frequently Asked Questions about R/RStudio</title>
   <meta name="description" content="Guide for psyTeachR course books." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Frequently Asked Questions about R/RStudio" />
+  <meta property="og:title" content="Topic 5 Plotting | Frequently Asked Questions about R/RStudio" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Frequently Asked Questions about R/RStudio" />
+  <meta name="twitter:title" content="Topic 5 Plotting | Frequently Asked Questions about R/RStudio" />
   
   <meta name="twitter:description" content="Guide for psyTeachR course books." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="data-wrangling.html"/>
 
-<link rel="next" href="installing-r-and-rstudio.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -152,16 +152,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Frequently Asked Questions about R/RStudio</h1>
-<p class="author"><em>Team #PsyTeachR</em></p>
-<p class="date"><em>2020-03-23</em></p>
+<div id="plotting" class="section level1">
+<h1><span class="header-section-number">Topic 5</span> Plotting</h1>
+<div id="highlighting-a-range-of-x-values-on-a-plot" class="section level2">
+<h2><span class="header-section-number">5.1</span> Highlighting a range of x-values on a plot</h2>
+<p>Sometimes you want to highlight a particular range of values; for example, a particular period of time in a time series.</p>
+<p>The code below is used to create the following plot.</p>
+<div class="figure" style="text-align: center"><span id="fig:plot"></span>
+<img src="05-plotting_files/figure-html/plot-1.png" alt="A time series with x = 40-60 highlighted" width="100%" />
+<p class="caption">
+Figure 5.1: A time series with x = 40-60 highlighted
+</p>
 </div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This book contains answers to many Frequently Asked Questions received by the #PsyTeachR team.</p>
-<!-- TODO: add editing instructions -->
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
 
+## make up some example data
+exdata &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">2</span>),
+                 <span class="dt">series =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">each =</span> <span class="dv">100</span>),
+                 <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">200</span>) <span class="op">+</span><span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">50</span>), <span class="dt">each =</span> <span class="dv">100</span>))
+
+## region we want to highlight
+regions &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x1 =</span> <span class="dv">40</span>, <span class="dt">x2 =</span> <span class="dv">60</span>, <span class="dt">y1 =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">y2 =</span> <span class="op">+</span><span class="ot">Inf</span>)
+
+<span class="kw">ggplot</span>(exdata, <span class="kw">aes</span>(x, y)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_rect</span>(<span class="dt">data =</span> regions,
+            <span class="dt">inherit.aes =</span> <span class="ot">FALSE</span>,
+            <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">xmin =</span> x1, <span class="dt">xmax =</span> x2,
+                          <span class="dt">ymin =</span> y1, <span class="dt">ymax =</span> y2),
+            <span class="dt">color =</span> <span class="st">&quot;transparent&quot;</span>,
+            <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>,
+            <span class="dt">alpha =</span> <span class="fl">.2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> series))</code></pre></div>
+<p><em>March 23, 2020. -DB</em></p>
+
+</div>
 </div>
 <div class="psyteachr_footer">
   
@@ -273,8 +297,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
+<a href="data-wrangling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="installing-r-and-rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
