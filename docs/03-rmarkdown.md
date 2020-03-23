@@ -38,3 +38,5 @@ dat <- read_csv("blah.csv") %>%
 Third step: compile to Word. You can now copy and paste the formatted code into your document.
 
 ![](images/rmarkdown-word-code-2.png)
+
+*March 23, 2020 -DB*
