@@ -1,4 +1,3 @@
-
 # Installing R and RStudio
 
 ## How do I install the R build tools? {#rtools}

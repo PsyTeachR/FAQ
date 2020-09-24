@@ -1,4 +1,3 @@
-
 # Plotting
 
 ## Highlighting a range of x-values on a plot

@@ -1,4 +1,3 @@
-
 # Knitting and RMarkdown Files
 
 ## Every time I knit, I get a message that packages are missing, and it won't knit.

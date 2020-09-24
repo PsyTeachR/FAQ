@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 3 Add-On Packages | Frequently Asked Questions about R/RStudio</title>
+  <title>Topic 2 Working with R and RStudio | Frequently Asked Questions about R/RStudio</title>
   <meta name="description" content="Guide for psyTeachR course books." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 3 Add-On Packages | Frequently Asked Questions about R/RStudio" />
+  <meta property="og:title" content="Topic 2 Working with R and RStudio | Frequently Asked Questions about R/RStudio" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 3 Add-On Packages | Frequently Asked Questions about R/RStudio" />
+  <meta name="twitter:title" content="Topic 2 Working with R and RStudio | Frequently Asked Questions about R/RStudio" />
   
   <meta name="twitter:description" content="Guide for psyTeachR course books." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="working-with-r-and-rstudio.html"/>
-<link rel="next" href="knitting-and-rmarkdown-files.html"/>
+<link rel="prev" href="installing-r-and-rstudio.html"/>
+<link rel="next" href="add-on-packages.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -184,25 +184,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="add-on-packages" class="section level1">
-<h1><span class="header-section-number">Topic 3</span> Add-On Packages</h1>
-<div id="why-cant-i-compile-packages-from-source" class="section level2">
-<h2><span class="header-section-number">3.1</span> Why can’t I compile packages from source?</h2>
-<p>If you are a Windows user, you are missing RTools. See <a href="installing-r-and-rstudio.html#rtools">this FAQ</a></p>
-<p>If you are a Mac user, <a href="add-on-packages.html#xcrun">there might be something wrong with your installation</a>.</p>
-<p><em>October 24, 2019. -DB</em></p>
+<div id="working-with-r-and-rstudio" class="section level1">
+<h1><span class="header-section-number">Topic 2</span> Working with R and RStudio</h1>
+<div id="what-is-the-best-way-to-share-code-on-microsoft-teams" class="section level2">
+<h2><span class="header-section-number">2.1</span> What is the best way to share code on Microsoft Teams?</h2>
+<p>You have run into a problem and need to get help on MS Teams. What is the right way to share your code?</p>
+<p>Please do <em>NOT</em> share a screenshot to the teams channel unless you are asked, or if it is not the code that is giving you problems, but something weird is happening with the RStudio IDE.</p>
+<p>If it’s your code that is not working, it is almost always better to copy and paste the code, because then people who are trying to help you can copy and paste the code <em>exactly</em> to try it out, rather than having to re-type everything from the image. Let’s look at an example. Below is a screenshot of how the RStudio IDE might look when your code throws an error. Here the code block labelled <code>cars</code> is causing the error. I will talk you through how to post the code on Teams. You might want to play around with these options in your Team’s “Test” channel before posting.</p>
+<div class="figure">
+<img src="images/mtcars_error.jpg" alt="a screenshot of RStudio IDE showing an error indicated by the red arrow" />
+<p class="caption"><em>a screenshot of RStudio IDE showing an error indicated by the red arrow</em></p>
 </div>
-<div id="xcrun" class="section level2">
-<h2><span class="header-section-number">3.2</span> When I try to compile, I get the following error message:</h2>
-<p><strong><code>xcrun: error: invalid active developer path</code></strong></p>
-<p>Solution:</p>
-<ul>
-<li>Open up the Terminal App. (Application&gt;Utilities or you can use the Terminal tab in RStudio, next to the console).</li>
-<li>At the command line in the Terminal type the following line.</li>
-</ul>
-<pre><code>xcode-select --install</code></pre>
-<p><em>October 24, 2019. -DB</em></p>
+<p>The particular error that our code threw was</p>
+<pre><code>Error in mtcars %&gt;% filter(mpg &gt; 20) : could not find function &quot;%&gt;%&quot;</code></pre>
+<p>And the code that threw it was</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mtcars <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">filter</span>(mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>)</a></code></pre></div>
+<p>Note that you can select and copy the code above if you wanted to run it yourself, but you could not do that if all you had to rely on was the screenshot.</p>
+<p>Copying the code and/or error in RStudio is easy; just highlight the code using the mouse and press Ctrl-C.</p>
+<p>If you just paste the code into a teams channel, the formatting is not so nice; you lose the formatting that allows you to read the code easily.</p>
+<div class="figure">
+<img src="images/teams_paste1.jpg" alt="A screenshot of MS Teams with the code pasted directly in. Not pretty!" />
+<p class="caption"><em>A screenshot of MS Teams with the code pasted directly in. Not pretty!</em></p>
+</div>
+<p>Here are two ways to get your code into teams, one that is quick and easy but not very flexible, and another that is far more flexible but requires more steps.</p>
+<div id="quick-and-easy-method" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Quick and easy method</h3>
+<p>First, if it is just a short function call, a single line, or an error, you can signal that text is meant to appear as code by surrounding it by single backticks—i.e., putting a backtick (`) right before and right after the text that you want to be formatted as code. Teams will automatically format it for you.</p>
+<p>For multi-line code, the easiest and fastest way is just to type three backticks inside your message at the beginning of a line. Any subsequent text you enter will be treated as code. To get to the beginning of a line without submitting your post, press Ctrl-Enter while typing your message. Then type the three backticks, and paste your code right into the gray box that automatically appears. Press Enter twice in a row to get back out of the code entry box. So your message might look like this.</p>
+<div class="figure">
+<img src="images/teams_chunk.jpg" alt="A screenshot of MS Teams with code embedded in a chunk." />
+<p class="caption"><em>A screenshot of MS Teams with code embedded in a chunk.</em></p>
+</div>
+<p>Above, I surrounded the error message <code>Error in mtcars %&gt;% filter(mpg &gt; 20) : could not find function "%&gt;%"</code> with single backticks to indicate code, and we typed triple backticks at the start of the line to create a code chunk.</p>
+<p>(The next method might be easier for making multi-line posts.)</p>
+</div>
+<div id="more-flexible-method" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> More flexible method</h3>
+<p>There is a more flexible (and possibly easier) way. Before pasting any text, click on the icon that looks like the letter “A”, highlighted below.</p>
+<div class="figure">
+<img src="images/teams_paste2.jpg" alt="Screenshot of Teams showing the icon that looks like an “A”" />
+<p class="caption"><em>Screenshot of Teams showing the icon that looks like an “A”</em></p>
+</div>
+<p>This will open up options for text formatting and will allow you to easily create a multi-line poste. From those options, select the icon that looks like <code>&lt;/&gt;</code> which stands for code.</p>
+<div class="figure">
+<img src="images/teams_paste3.jpg" alt="Screenshot of Teams formatting icons, with code icon highlighted" />
+<p class="caption"><em>Screenshot of Teams formatting icons, with code icon highlighted</em></p>
+</div>
+<p>The code icon will open a window where you can paste your code. In the dropdown menu on the top right, select ‘R’ as the type of code. This will give you syntax highlighting.</p>
+<div class="figure">
+<img src="images/teams_paste4.jpg" alt="Screenshot of Teams formatting icons, with code icon highlighted" />
+<p class="caption"><em>Screenshot of Teams formatting icons, with code icon highlighted</em></p>
+</div>
+<p>Here is how you might begin your post.</p>
+<div class="figure">
+<img src="images/teams_paste5.jpg" alt="Screenshot of Teams with unsubmitted post" />
+<p class="caption"><em>Screenshot of Teams with unsubmitted post</em></p>
+</div>
+<p><em>-September 24, 2020, -DB</em></p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -315,8 +356,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="working-with-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="knitting-and-rmarkdown-files.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="installing-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="add-on-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
