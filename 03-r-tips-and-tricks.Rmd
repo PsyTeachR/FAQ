@@ -1,4 +1,31 @@
-# Data Wrangling
+# R Tips and Tricks
+
+## How do I get nicely formatted R code into a Word document?
+
+You might want to include your R code as an appendix in a document. If you just cut and paste it in, the formatting will look terrible. So here is a trick that allows you to get nicely formatted R code into Word.
+
+First step: open a new R Markdown file which you will paste the code into. For the output format, select Word.
+
+![](images/rmarkdown-word-code-1.png)
+
+Second step: paste the code into a block with chunk options `eval=FALSE, echo=TRUE`.
+
+````
+```{r verb, eval = FALSE, echo=TRUE}`r ''`
+## this is my code
+library("tidyverse")
+
+dat <- read_csv("blah.csv") %>%
+  group_by(subj_id) %>%
+  summarise(m = mean(RT))
+```
+````
+
+Third step: compile to Word. You can now copy and paste the formatted code into your document.
+
+![](images/rmarkdown-word-code-2.png)
+
+*March 23, 2020 -DB*
 
 ## Importing data from multiple files
 
@@ -141,3 +168,55 @@ result %>%
 ```
 
 *October 30, 2019. -DB*
+
+## Highlighting a range of x-values on a plot
+
+Sometimes you want to highlight a particular range of values; for example, a particular period of time in a time series.
+
+The code below is used to create the following plot.
+
+```{r plot, echo = FALSE, fig.cap = "A time series with x = 40-60 highlighted"}
+library("tidyverse")
+
+## make up some example data
+exdata <- tibble(x = rep(1:100, 2),
+                 series = rep(1:2, each = 100),
+                 y = rnorm(200) + rep(c(30, 50), each = 100))
+
+## region we want to highlight
+regions <- tibble(x1 = 40, x2 = 60, y1 = -Inf, y2 = +Inf)
+
+ggplot(exdata, aes(x, y)) +
+  geom_rect(data = regions,
+            inherit.aes = FALSE,
+            mapping = aes(xmin = x1, xmax = x2,
+                          ymin = y1, ymax = y2),
+            color = "transparent",
+            fill = "blue",
+            alpha = .2) +
+  geom_line(aes(group = series))
+```
+
+```{r code, eval = FALSE}
+library("tidyverse")
+
+## make up some example data
+exdata <- tibble(x = rep(1:100, 2),
+                 series = rep(1:2, each = 100),
+                 y = rnorm(200) + rep(c(30, 50), each = 100))
+
+## region we want to highlight
+regions <- tibble(x1 = 40, x2 = 60, y1 = -Inf, y2 = +Inf)
+
+ggplot(exdata, aes(x, y)) +
+  geom_rect(data = regions,
+            inherit.aes = FALSE,
+            mapping = aes(xmin = x1, xmax = x2,
+                          ymin = y1, ymax = y2),
+            color = "transparent",
+            fill = "blue",
+            alpha = .2) +
+  geom_line(aes(group = series))
+```
+
+*March 23, 2020. -DB*

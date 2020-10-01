@@ -1,6 +1,16 @@
-# Working with R and RStudio
+# Microsoft Teams
 
-## What is the best way to share code on Microsoft Teams?
+## Pinning channels
+
+Teams have a way of building up a huge glut of channels, and it can get annoying to have to navigate through them every time just to find the few that you are most interested in. You may even belong to multiple teams. Here's a good solution for reducing clutter: **pin** the channels you are most interested in. They will appear at the top of your screen when you open Teams.
+
+![*image of Dale's pinned teams*](images/teams_pin_01.png)
+
+It's easy enough to do. Navigate to the channel you're interested in. Click on the three dots appearing at the right, and from the pop-up menu, select **Pin**. That's it!
+
+![*image of pop-up menu next to channel*](images/teams_pin_02.png)
+
+## What is the best way to share R code on Microsoft Teams?
 
 You have run into a problem and need to get help on MS Teams. What is the right way to share your code?
 
@@ -62,5 +72,9 @@ The code icon will open a window where you can paste your code. In the dropdown 
 Here is how you might begin your post.
 
 ![*Screenshot of Teams with unsubmitted post*](images/teams_paste5.jpg)
+
+#### Taking it one step further!
+
+If you really want to make things pretty and impress your instructors, please consider creating a reproducible example using the [reprex](https://www.tidyverse.org/help/#reprex) package from tidyverse.
 
 *-September 24, 2020, -DB*

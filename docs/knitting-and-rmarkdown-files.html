@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 4 Knitting and RMarkdown Files | Frequently Asked Questions about R/RStudio</title>
-  <meta name="description" content="Guide for psyTeachR course books." />
+  <title>Topic 5 Knitting and RMarkdown Files | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</title>
+  <meta name="description" content="Frequently Asked Questions." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 4 Knitting and RMarkdown Files | Frequently Asked Questions about R/RStudio" />
+  <meta property="og:title" content="Topic 5 Knitting and RMarkdown Files | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Guide for psyTeachR course books." />
+  <meta property="og:description" content="Frequently Asked Questions." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 4 Knitting and RMarkdown Files | Frequently Asked Questions about R/RStudio" />
+  <meta name="twitter:title" content="Topic 5 Knitting and RMarkdown Files | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
   
-  <meta name="twitter:description" content="Guide for psyTeachR course books." />
+  <meta name="twitter:description" content="Frequently Asked Questions." />
   
 
 <meta name="author" content="Team #PsyTeachR" />
@@ -50,13 +50,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -65,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,33 +133,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Installing R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#rtools"><i class="fa fa-check"></i><b>1.1</b> How do I install the R build tools?</a></li>
-<li class="chapter" data-level="1.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#im-getting-an-error-when-i-try-to-start-up-rstudio."><i class="fa fa-check"></i><b>1.2</b> I’m getting an error when I try to start up RStudio.</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#i-am-on-a-campus-computer-and-the-error-is-fatal-error-unable-to-initialize-the-jit"><i class="fa fa-check"></i><b>1.2.1</b> I am on a campus computer, and the error is: “Fatal error: unable to initialize the JIT”</a></li>
+<li class="chapter" data-level="1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Installing/Updating R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#what-is-r-and-rstudio-and-how-do-i-get-them"><i class="fa fa-check"></i><b>1.1</b> What is R and RStudio, and how do I get them?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#local"><i class="fa fa-check"></i><b>1.1.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#server"><i class="fa fa-check"></i><b>1.1.2</b> Using the Department’s RStudio Server</a></li>
+<li class="chapter" data-level="1.1.3" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#vdesk"><i class="fa fa-check"></i><b>1.1.3</b> Using Virtual Desktop</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#i-am-using-macos-10.15-catalina"><i class="fa fa-check"></i><b>1.3</b> I am using MacOS 10.15 Catalina</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Working with R and RStudio</a><ul>
-<li class="chapter" data-level="2.1" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html#what-is-the-best-way-to-share-code-on-microsoft-teams"><i class="fa fa-check"></i><b>2.1</b> What is the best way to share code on Microsoft Teams?</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html#quick-and-easy-method"><i class="fa fa-check"></i><b>2.1.1</b> Quick and easy method</a></li>
-<li class="chapter" data-level="2.1.2" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html#more-flexible-method"><i class="fa fa-check"></i><b>2.1.2</b> More flexible method</a></li>
+<li class="chapter" data-level="1.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#how-do-i-update-r-rstudio-and-add-on-packages-to-the-latest-versions"><i class="fa fa-check"></i><b>1.2</b> How do I update R, RStudio, and add-on packages to the latest versions?</a></li>
+<li class="chapter" data-level="1.3" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#serverfiles"><i class="fa fa-check"></i><b>1.3</b> How do I access files when using the RStudio Server?</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#loading-data-into-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.1</b> Loading data into the RStudio Server</a></li>
+<li class="chapter" data-level="1.3.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#downloading-files-from-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.2</b> Downloading files from the RStudio Server</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="add-on-packages.html"><a href="add-on-packages.html"><i class="fa fa-check"></i><b>3</b> Add-On Packages</a><ul>
-<li class="chapter" data-level="3.1" data-path="add-on-packages.html"><a href="add-on-packages.html#why-cant-i-compile-packages-from-source"><i class="fa fa-check"></i><b>3.1</b> Why can’t I compile packages from source?</a></li>
-<li class="chapter" data-level="3.2" data-path="add-on-packages.html"><a href="add-on-packages.html#xcrun"><i class="fa fa-check"></i><b>3.2</b> When I try to compile, I get the following error message:</a></li>
+<li class="chapter" data-level="2" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Troubleshooting R and RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#rtools"><i class="fa fa-check"></i><b>2.1</b> I am unable to install add-on packages from source.</a></li>
+<li class="chapter" data-level="2.2" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#catalina"><i class="fa fa-check"></i><b>2.2</b> RStudio keeps crashing with MacOS 10.15 Catalina</a></li>
+<li class="chapter" data-level="2.3" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit"><i class="fa fa-check"></i><b>2.3</b> When I start RStudio, I get the error “Fatal error: unable to initialize the JIT”</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html"><i class="fa fa-check"></i><b>4</b> Knitting and RMarkdown Files</a><ul>
-<li class="chapter" data-level="4.1" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit."><i class="fa fa-check"></i><b>4.1</b> Every time I knit, I get a message that packages are missing, and it won’t knit.</a></li>
-<li class="chapter" data-level="4.2" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#how-do-i-get-nicely-formatted-r-code-into-a-word-document"><i class="fa fa-check"></i><b>4.2</b> How do I get nicely formatted R code into a Word document?</a></li>
+<li class="chapter" data-level="3" data-path="microsoft-teams.html"><a href="microsoft-teams.html"><i class="fa fa-check"></i><b>3</b> Microsoft Teams</a><ul>
+<li class="chapter" data-level="3.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#pinning-channels"><i class="fa fa-check"></i><b>3.1</b> Pinning channels</a></li>
+<li class="chapter" data-level="3.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#what-is-the-best-way-to-share-r-code-on-microsoft-teams"><i class="fa fa-check"></i><b>3.2</b> What is the best way to share R code on Microsoft Teams?</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#quick-and-easy-method"><i class="fa fa-check"></i><b>3.2.1</b> Quick and easy method</a></li>
+<li class="chapter" data-level="3.2.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#more-flexible-method"><i class="fa fa-check"></i><b>3.2.2</b> More flexible method</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
-<li class="chapter" data-level="5.1" data-path="data-wrangling.html"><a href="data-wrangling.html#importing-data-from-multiple-files"><i class="fa fa-check"></i><b>5.1</b> Importing data from multiple files</a></li>
-<li class="chapter" data-level="5.2" data-path="data-wrangling.html"><a href="data-wrangling.html#detecting-runs-in-a-sequence"><i class="fa fa-check"></i><b>5.2</b> Detecting “runs” in a sequence</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>6</b> Plotting</a><ul>
-<li class="chapter" data-level="6.1" data-path="plotting.html"><a href="plotting.html#highlighting-a-range-of-x-values-on-a-plot"><i class="fa fa-check"></i><b>6.1</b> Highlighting a range of x-values on a plot</a></li>
+<li class="chapter" data-level="4" data-path="add-on-packages.html"><a href="add-on-packages.html"><i class="fa fa-check"></i><b>4</b> Add-On Packages</a><ul>
+<li class="chapter" data-level="4.1" data-path="add-on-packages.html"><a href="add-on-packages.html#why-cant-i-compile-packages-from-source"><i class="fa fa-check"></i><b>4.1</b> Why can’t I compile packages from source?</a></li>
+<li class="chapter" data-level="4.2" data-path="add-on-packages.html"><a href="add-on-packages.html#xcrun"><i class="fa fa-check"></i><b>4.2</b> When I try to compile, I get the following error message:</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html"><i class="fa fa-check"></i><b>5</b> Knitting and RMarkdown Files</a><ul>
+<li class="chapter" data-level="5.1" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit."><i class="fa fa-check"></i><b>5.1</b> Every time I knit, I get a message that packages are missing, and it won’t knit.</a></li>
+<li class="chapter" data-level="5.2" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#how-do-i-get-nicely-formatted-r-code-into-a-word-document"><i class="fa fa-check"></i><b>5.2</b> How do I get nicely formatted R code into a Word document?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>6</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-wrangling.html"><a href="data-wrangling.html#importing-data-from-multiple-files"><i class="fa fa-check"></i><b>6.1</b> Importing data from multiple files</a></li>
+<li class="chapter" data-level="6.2" data-path="data-wrangling.html"><a href="data-wrangling.html#detecting-runs-in-a-sequence"><i class="fa fa-check"></i><b>6.2</b> Detecting “runs” in a sequence</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>7</b> Plotting</a><ul>
+<li class="chapter" data-level="7.1" data-path="plotting.html"><a href="plotting.html#highlighting-a-range-of-x-values-on-a-plot"><i class="fa fa-check"></i><b>7.1</b> Highlighting a range of x-values on a plot</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
@@ -180,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Frequently Asked Questions about R/RStudio</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</a>
           </h1>
         </div>
 
@@ -189,16 +197,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="knitting-and-rmarkdown-files" class="section level1">
-<h1><span class="header-section-number">Topic 4</span> Knitting and RMarkdown Files</h1>
+<h1><span class="header-section-number">Topic 5</span> Knitting and RMarkdown Files</h1>
 <div id="every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit." class="section level2">
-<h2><span class="header-section-number">4.1</span> Every time I knit, I get a message that packages are missing, and it won’t knit.</h2>
+<h2><span class="header-section-number">5.1</span> Every time I knit, I get a message that packages are missing, and it won’t knit.</h2>
 <p>Probably what’s happening is that it tries but fails to install the necessary packages. Mark down the names of the packages that it says you need and try to install them from the command line. For example, if it says you need <strong><code>digest</code></strong> then type this into the console:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="knitting-and-rmarkdown-files.html#cb4-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;digest&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;digest&quot;</span>)</a></code></pre></div>
 <p>and see what happens. Note any error messages. Check <a href="add-on-packages.html">the section on packages</a> for help with specific error messages.</p>
 <p><em>October 24, 2019. -DB</em></p>
 </div>
 <div id="how-do-i-get-nicely-formatted-r-code-into-a-word-document" class="section level2">
-<h2><span class="header-section-number">4.2</span> How do I get nicely formatted R code into a Word document?</h2>
+<h2><span class="header-section-number">5.2</span> How do I get nicely formatted R code into a Word document?</h2>
 <p>You might want to include your R code as an appendix in a document. If you just cut and paste it in, the formatting will look terrible. So here is a trick that allows you to get nicely formatted R code into Word.</p>
 <p>First step: open a new R Markdown file which you will paste the code into. For the output format, select Word.</p>
 <p><img src="images/rmarkdown-word-code-1.png" /></p>

@@ -1,4 +1,31 @@
-# Data Wrangling
+# R Tips and Tricks
+
+## How do I get nicely formatted R code into a Word document?
+
+You might want to include your R code as an appendix in a document. If you just cut and paste it in, the formatting will look terrible. So here is a trick that allows you to get nicely formatted R code into Word.
+
+First step: open a new R Markdown file which you will paste the code into. For the output format, select Word.
+
+![](images/rmarkdown-word-code-1.png)
+
+Second step: paste the code into a block with chunk options `eval=FALSE, echo=TRUE`.
+
+````
+```{r verb, eval = FALSE, echo=TRUE}
+## this is my code
+library("tidyverse")
+
+dat <- read_csv("blah.csv") %>%
+  group_by(subj_id) %>%
+  summarise(m = mean(RT))
+```
+````
+
+Third step: compile to Word. You can now copy and paste the formatted code into your document.
+
+![](images/rmarkdown-word-code-2.png)
+
+*March 23, 2020 -DB*
 
 ## Importing data from multiple files
 
@@ -52,11 +79,12 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "c" "c" "b" "b" "b" "d" "d" "d" "a" "a" "a" "a" "Z" "Z" "Z" "a" "a" "b" "b"
-## [20] "b" "d" "d" "d" "c" "c" "c" "c" "Z" "Z" "Z" "b" "b" "b" "b" "a" "a"
+##  [1] "a" "a" "d" "d" "d" "d" "c" "c" "c" "c" "b" "b" "Z" "Z" "Z" "b" "b" "b" "b"
+## [20] "a" "a" "a" "a" "c" "c" "c" "c" "d" "d" "Z" "Z" "Z" "d" "d" "d" "d" "b" "b"
+## [39] "b"
 ```
 
-So here you can see that the first run of Zs is from frame 13 to 15, 30 and the second is from 28 to 30. We want to write a function that processes the data for each trial and results in a table like this:
+So here you can see that the first run of Zs is from frame 13 to 15, 32 and the second is from 30 to 32. We want to write a function that processes the data for each trial and results in a table like this:
 
 
 ```
@@ -64,7 +92,7 @@ So here you can see that the first run of Zs is from frame 13 to 15, 30 and the 
 ##   subject trial   run start_frame end_frame
 ##     <dbl> <dbl> <int>       <int>     <int>
 ## 1       1     1     1          13        15
-## 2       1     1     2          28        30
+## 2       1     1     2          30        32
 ```
 
 The first thing to do is to add a logical vector to your tibble whose value is `TRUE` when the target value (e.g., `Z`) is present in the sequence, false otherwise.
@@ -78,20 +106,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 552 x 4
+## # A tibble: 550 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
-##  1       1     1 c        FALSE    
-##  2       1     1 c        FALSE    
-##  3       1     1 b        FALSE    
-##  4       1     1 b        FALSE    
-##  5       1     1 b        FALSE    
+##  1       1     1 a        FALSE    
+##  2       1     1 a        FALSE    
+##  3       1     1 d        FALSE    
+##  4       1     1 d        FALSE    
+##  5       1     1 d        FALSE    
 ##  6       1     1 d        FALSE    
-##  7       1     1 d        FALSE    
-##  8       1     1 d        FALSE    
-##  9       1     1 a        FALSE    
-## 10       1     1 a        FALSE    
-## # … with 542 more rows
+##  7       1     1 c        FALSE    
+##  8       1     1 c        FALSE    
+##  9       1     1 c        FALSE    
+## 10       1     1 c        FALSE    
+## # … with 540 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -117,9 +145,10 @@ rle(s1t1)
 ```
 ##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ## [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [25] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+## [37] FALSE FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 12 3 12 3 6
+##   lengths: int [1:5] 12 3 14 3 7
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -153,7 +182,7 @@ detect_runs(tibble(lvec = s1t1))
 ##     run start_fr end_fr
 ##   <int>    <int>  <int>
 ## 1     1       13     15
-## 2     2       28     30
+## 2     2       30     32
 ```
 
 OK, now we're ready to run the function.
@@ -170,20 +199,20 @@ result
 ## # A tibble: 15 x 4
 ##    subject trial subtbl            runstbl         
 ##      <int> <int> <list>            <list>          
-##  1       1     1 <tibble [36 × 1]> <tibble [2 × 3]>
-##  2       1     2 <tibble [39 × 1]> <tibble [2 × 3]>
-##  3       1     3 <tibble [37 × 1]> <tibble [2 × 3]>
-##  4       2     1 <tibble [41 × 1]> <tibble [2 × 3]>
-##  5       2     2 <tibble [41 × 1]> <tibble [2 × 3]>
-##  6       2     3 <tibble [36 × 1]> <tibble [2 × 3]>
-##  7       3     1 <tibble [35 × 1]> <tibble [2 × 3]>
-##  8       3     2 <tibble [39 × 1]> <tibble [2 × 3]>
-##  9       3     3 <tibble [39 × 1]> <tibble [2 × 3]>
-## 10       4     1 <tibble [37 × 1]> <tibble [2 × 3]>
-## 11       4     2 <tibble [35 × 1]> <tibble [2 × 3]>
-## 12       4     3 <tibble [29 × 1]> <tibble [2 × 3]>
-## 13       5     1 <tibble [35 × 1]> <tibble [2 × 3]>
-## 14       5     2 <tibble [35 × 1]> <tibble [2 × 3]>
+##  1       1     1 <tibble [39 × 1]> <tibble [2 × 3]>
+##  2       1     2 <tibble [34 × 1]> <tibble [2 × 3]>
+##  3       1     3 <tibble [39 × 1]> <tibble [2 × 3]>
+##  4       2     1 <tibble [34 × 1]> <tibble [2 × 3]>
+##  5       2     2 <tibble [38 × 1]> <tibble [2 × 3]>
+##  6       2     3 <tibble [37 × 1]> <tibble [2 × 3]>
+##  7       3     1 <tibble [36 × 1]> <tibble [2 × 3]>
+##  8       3     2 <tibble [34 × 1]> <tibble [2 × 3]>
+##  9       3     3 <tibble [35 × 1]> <tibble [2 × 3]>
+## 10       4     1 <tibble [34 × 1]> <tibble [2 × 3]>
+## 11       4     2 <tibble [41 × 1]> <tibble [2 × 3]>
+## 12       4     3 <tibble [32 × 1]> <tibble [2 × 3]>
+## 13       5     1 <tibble [39 × 1]> <tibble [2 × 3]>
+## 14       5     2 <tibble [40 × 1]> <tibble [2 × 3]>
 ## 15       5     3 <tibble [38 × 1]> <tibble [2 × 3]>
 ```
 
@@ -201,16 +230,52 @@ result %>%
 ##    subject trial   run start_fr end_fr
 ##      <int> <int> <int>    <int>  <int>
 ##  1       1     1     1       13     15
-##  2       1     1     2       28     30
-##  3       1     2     1       15     17
-##  4       1     2     2       31     33
-##  5       1     3     1       14     16
+##  2       1     1     2       30     32
+##  3       1     2     1       13     15
+##  4       1     2     2       26     28
+##  5       1     3     1       13     15
 ##  6       1     3     2       30     32
-##  7       2     1     1       17     19
-##  8       2     1     2       32     34
-##  9       2     2     1       16     18
-## 10       2     2     2       34     36
+##  7       2     1     1        9     11
+##  8       2     1     2       24     26
+##  9       2     2     1       13     15
+## 10       2     2     2       29     31
 ## # … with 20 more rows
 ```
 
 *October 30, 2019. -DB*
+
+## Highlighting a range of x-values on a plot
+
+Sometimes you want to highlight a particular range of values; for example, a particular period of time in a time series.
+
+The code below is used to create the following plot.
+
+<div class="figure" style="text-align: center">
+<img src="03-r-tips-and-tricks_files/figure-html/plot-1.png" alt="A time series with x = 40-60 highlighted" width="100%" />
+<p class="caption">(\#fig:plot)A time series with x = 40-60 highlighted</p>
+</div>
+
+
+```r
+library("tidyverse")
+
+## make up some example data
+exdata <- tibble(x = rep(1:100, 2),
+                 series = rep(1:2, each = 100),
+                 y = rnorm(200) + rep(c(30, 50), each = 100))
+
+## region we want to highlight
+regions <- tibble(x1 = 40, x2 = 60, y1 = -Inf, y2 = +Inf)
+
+ggplot(exdata, aes(x, y)) +
+  geom_rect(data = regions,
+            inherit.aes = FALSE,
+            mapping = aes(xmin = x1, xmax = x2,
+                          ymin = y1, ymax = y2),
+            color = "transparent",
+            fill = "blue",
+            alpha = .2) +
+  geom_line(aes(group = series))
+```
+
+*March 23, 2020. -DB*

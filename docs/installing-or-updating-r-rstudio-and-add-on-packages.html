@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 1 Installing or Updating R, RStudio, and add-on packages | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</title>
+  <meta name="description" content="Frequently Asked Questions." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 1 Installing or Updating R, RStudio, and add-on packages | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Frequently Asked Questions." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 1 Installing or Updating R, RStudio, and add-on packages | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
+  
+  <meta name="twitter:description" content="Frequently Asked Questions." />
+  
+
+<meta name="author" content="Team #PsyTeachR" />
+
+
+<meta name="date" content="2020-10-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="microsoft-teams.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">PsyTeachR Frequently Asked Questions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
+<li class="chapter" data-level="1" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html"><i class="fa fa-check"></i><b>1</b> Installing or Updating R, RStudio, and add-on packages</a><ul>
+<li class="chapter" data-level="1.1" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#what-is-r-and-rstudio-and-how-do-i-get-them"><i class="fa fa-check"></i><b>1.1</b> What is R and RStudio, and how do I get them?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#local"><i class="fa fa-check"></i><b>1.1.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#server"><i class="fa fa-check"></i><b>1.1.2</b> Using the Department’s RStudio Server</a></li>
+<li class="chapter" data-level="1.1.3" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#vdesk"><i class="fa fa-check"></i><b>1.1.3</b> Using Virtual Desktop</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#how-do-i-update-r-rstudio-and-add-on-packages-to-the-latest-versions"><i class="fa fa-check"></i><b>1.2</b> How do I update R, RStudio, and add-on packages to the latest versions?</a></li>
+<li class="chapter" data-level="1.3" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#serverfiles"><i class="fa fa-check"></i><b>1.3</b> How do I access files when using the RStudio Server?</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#loading-data-into-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.1</b> Loading data into the RStudio Server</a></li>
+<li class="chapter" data-level="1.3.2" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#downloading-files-from-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.2</b> Downloading files from the RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#troubleshooting"><i class="fa fa-check"></i><b>1.4</b> Troubleshooting</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#rtools"><i class="fa fa-check"></i><b>1.4.1</b> I am unable to install pacakges from source.</a></li>
+<li class="chapter" data-level="1.4.2" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#catalina"><i class="fa fa-check"></i><b>1.4.2</b> Problems with RStudio in MacOS 10.15 Catalina</a></li>
+<li class="chapter" data-level="1.4.3" data-path="installing-or-updating-r-rstudio-and-add-on-packages.html"><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit"><i class="fa fa-check"></i><b>1.4.3</b> When I start RStudio, I get the error “Fatal error: unable to initialize the JIT”</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="microsoft-teams.html"><a href="microsoft-teams.html"><i class="fa fa-check"></i><b>2</b> Microsoft Teams</a><ul>
+<li class="chapter" data-level="2.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#pinning-channels"><i class="fa fa-check"></i><b>2.1</b> Pinning channels</a></li>
+<li class="chapter" data-level="2.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#what-is-the-best-way-to-share-r-code-on-microsoft-teams"><i class="fa fa-check"></i><b>2.2</b> What is the best way to share R code on Microsoft Teams?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#quick-and-easy-method"><i class="fa fa-check"></i><b>2.2.1</b> Quick and easy method</a></li>
+<li class="chapter" data-level="2.2.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#more-flexible-method"><i class="fa fa-check"></i><b>2.2.2</b> More flexible method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="add-on-packages.html"><a href="add-on-packages.html"><i class="fa fa-check"></i><b>3</b> Add-On Packages</a><ul>
+<li class="chapter" data-level="3.1" data-path="add-on-packages.html"><a href="add-on-packages.html#why-cant-i-compile-packages-from-source"><i class="fa fa-check"></i><b>3.1</b> Why can’t I compile packages from source?</a></li>
+<li class="chapter" data-level="3.2" data-path="add-on-packages.html"><a href="add-on-packages.html#xcrun"><i class="fa fa-check"></i><b>3.2</b> When I try to compile, I get the following error message:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html"><i class="fa fa-check"></i><b>4</b> Knitting and RMarkdown Files</a><ul>
+<li class="chapter" data-level="4.1" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit."><i class="fa fa-check"></i><b>4.1</b> Every time I knit, I get a message that packages are missing, and it won’t knit.</a></li>
+<li class="chapter" data-level="4.2" data-path="knitting-and-rmarkdown-files.html"><a href="knitting-and-rmarkdown-files.html#how-do-i-get-nicely-formatted-r-code-into-a-word-document"><i class="fa fa-check"></i><b>4.2</b> How do I get nicely formatted R code into a Word document?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>5</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-wrangling.html"><a href="data-wrangling.html#importing-data-from-multiple-files"><i class="fa fa-check"></i><b>5.1</b> Importing data from multiple files</a></li>
+<li class="chapter" data-level="5.2" data-path="data-wrangling.html"><a href="data-wrangling.html#detecting-runs-in-a-sequence"><i class="fa fa-check"></i><b>5.2</b> Detecting “runs” in a sequence</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>6</b> Plotting</a><ul>
+<li class="chapter" data-level="6.1" data-path="plotting.html"><a href="plotting.html#highlighting-a-range-of-x-values-on-a-plot"><i class="fa fa-check"></i><b>6.1</b> Highlighting a range of x-values on a plot</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="installing-or-updating-r-rstudio-and-add-on-packages" class="section level1">
+<h1><span class="header-section-number">Topic 1</span> Installing or Updating R, RStudio, and add-on packages</h1>
+<div id="what-is-r-and-rstudio-and-how-do-i-get-them" class="section level2">
+<h2><span class="header-section-number">1.1</span> What is R and RStudio, and how do I get them?</h2>
+<p><a href="https://www.r-project.org/">R</a> is free, open-source software environment for statistical programming and graphics. It is the engine that you will use to do your analyses.</p>
+<p>RStudio is an “Integrated Development Environment” (IDE)—a software package developed by the commercial software company <a href="https://www.rstudio.com">RStudio</a>. RStudio is not necessary to use R, but it is highly recommended because it makes it <strong>much</strong> easier to interact with the R engine and develop reproducible scripts compared to working with R alone. RStudio desktop is a free version of this software. There are other IDEs available that work with R, such as <a href="https://jupyter.org/">Jupyter notebooks</a> and <a href="https://www.gnu.org/software/emacs/">emacs (with ESS and org-mode)</a>. But the software we recommend is RStudio.</p>
+<p>We often refer to the combination of these two pieces of software as R/RStudio.</p>
+<p><strong>You have the following options for getting access to R/RStudio:</strong></p>
+<ul>
+<li><p><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#local">Install it locally</a>. Both pieces of software are free. The advantage is that you can use them without an internet connection, and you have easy access to the files stored on your hard drive. This is the best long-term solution but installation can sometimes be a hassle (<a href="installing-or-updating-r-rstudio-and-add-on-packages.html#catalina">particularly for Mac users</a>).</p></li>
+<li><p><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#server">Use the department’s RStudio Server</a>. This is a great option as it doesn’t require installing anything on your own system—all you need to do is open a web browser and point it to the right address. It has R, RStudio, and all the add-on packages you might need preinstalled. The disadvantage is that it is requires a stable internet connection, and access to local files can be somewhat tricky. It is great for people new to R/RStudio. If you are a Psychology student at the University of Glasgow, you have free access to this server. Please contact your instructor for the link.</p></li>
+<li><p><a href="installing-or-updating-r-rstudio-and-add-on-packages.html#vdesk">Access R/RStudio through Windows Virtual Desktop</a>. Works ok but performance can be sluggish, especially with low-bandwidth network connections. Not recommended unless options 1 and 2 are not viable.</p></li>
+<li><p><a href="https://rstudio.cloud/">Use RStudio Cloud</a>. This is a free cloud service that works well as a temporary option, but without the paid version your options will be limited. Not recommended except as a final fallback option.</p></li>
+</ul>
+<div id="local" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Installing R and RStudio</h3>
+<p>This is your best long-term option and is really not too difficult, but if you’re new to R/RStudio or not confident with computers, we don’t recommend this.</p>
+<p>As far as we are aware at time of writing, R and RStudio do not work well on Chromebooks, Android Tablets or iPads. If this is the only device that you have access to you can try the <a href="installing-or-updating-r-rstudio-and-add-on-packages.html#server">RStudio Server</a>. We really recommend a laptop or desktop computer as the ideal machine for your data analysis work.</p>
+<p>Michael Galarnyk has very good tutorials for installing R and RStudio on a Mac and a PC.</p>
+<p><strong>The basic thing to remember is install R first and only then install RStudio.</strong></p>
+<p><a href="https://medium.com/@GalarnykMichael/install-r-and-rstudio-on-mac-e911606ce4f4">For installing on a Mac</a></p>
+<p><a href="https://medium.com/@GalarnykMichael/install-r-and-rstudio-on-windows-5f503f708027">For installing on a PC</a></p>
+</div>
+<div id="server" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Using the Department’s RStudio Server</h3>
+<p>The RStudio Server is accessed through a browser, and operates nearly identically to R/RStudio running locally despite the fact that it is actually running remotely. However, there are two differences: (1) it can sometimes be slow, depending on the speed of your network connection as well as the load on the server; and (2) you cannot directly access any local files on your hard drive; you must upload them to the server to work with them.</p>
+<p>Open a browser and enter the URL of the University of Glasgow Psychology RStudio Server. You will need to get the URL from your class Moodle web page or from your instructor. When you enter the URL you will see:</p>
+<div class="figure">
+<img src="images/rstudio-login.jpg" alt="Image of the RStudio login" />
+<p class="caption"><em>Image of the RStudio login</em></p>
+</div>
+<p>At the login screen, enter your GUID and password. The result will be an interactive web page that looks just like what you would see if you had installed R/RStudio locally, except it is running on a departmental server.</p>
+<p>If you have login problems, please connect to the university’s <a href="https://www.gla.ac.uk/myglasgow/it/vpn/">Virtual Private Network (VPN)</a> and try again.
+If you continue to have problems, please post your problem to a help channel on Teams.</p>
+<p>Also, please read the <a href="installing-or-updating-r-rstudio-and-add-on-packages.html#serverfiles">section on working with files on the server</a>.</p>
+</div>
+<div id="vdesk" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Using Virtual Desktop</h3>
+<p>Virtual Desktop is another browser-based method for getting access to R/RStudio. It will be more laggy than the RStudio Server and also has the same limitation of not being able to see local files, so we don’t recommend it except as a fallback option if you can’t access the server for some reason.</p>
+<p><em>October 1, 2020. -HP and DB</em></p>
+</div>
+</div>
+<div id="how-do-i-update-r-rstudio-and-add-on-packages-to-the-latest-versions" class="section level2">
+<h2><span class="header-section-number">1.2</span> How do I update R, RStudio, and add-on packages to the latest versions?</h2>
+<p>We recommend that you update all your data skills software and packages at the start of the academic year. That will mean that you are running the same software as members of staff and fellow students and helps collaborative work.</p>
+<p>Never do this just before an assignment is due, save updating for when you have a bit of time on your hands.</p>
+<p><strong>IMPORTANT update R first, then update R Studio and then update your packages</strong></p>
+<p><a href="https://bootstrappers.umassmed.edu/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html" target="_blank">Nick Hathaway has a set of instructions that work for this</a>. The process takes about 20 minutes</p>
+<p>To update R itself, you will need to use R rather than RStudio.</p>
+<p>The newest version of RStudio has a lovely tool that scans scripts you open for any packages that you don’t have installed so look out for that.</p>
+<p><em>October 1, 2020. -HP and DB</em></p>
+</div>
+<div id="serverfiles" class="section level2">
+<h2><span class="header-section-number">1.3</span> How do I access files when using the RStudio Server?</h2>
+<p>The first thing to note is that the RStudio Server is not a good place to store your data forever. it is not backed up, so make sure that you download any important work regularly and store on OneDrive.</p>
+<p>The undergraduate Level 1 teaching materials has walk-through information about <a href="https://psyteachr.github.io/ug1-practical/programming-basics.html#getting-to-know-r-studio">interacting with the server</a> as well as <a href="https://psyteachr.github.io/ug1-practical/ref1.html#activity-1-upload-data-files-to-the-server">uploading files</a>. Here is a quick reference guide.</p>
+<div id="loading-data-into-the-rstudio-server" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Loading data into the RStudio Server</h3>
+<ol style="list-style-type: decimal">
+<li>Select the Files Tab</li>
+<li>Make a folder for your work (NEVER call it R as that can cause errors)</li>
+<li>Click Upload</li>
+<li>Browse to the file on your computer via Choose File – if you upload a zipped folder, the server will automatically unzip it for you 😊</li>
+</ol>
+<div class="figure">
+<img src="images/upload_files.png" alt="Image of the uploading instructions" />
+<p class="caption"><em>Image of the uploading instructions</em></p>
+</div>
+</div>
+<div id="downloading-files-from-the-rstudio-server" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Downloading files from the RStudio Server</h3>
+<p>If you just have a single file to download, it’s as easy as just clicking on that file in the Files pane of the RStudio Server.</p>
+<p>If you have multiple files that you want to download:</p>
+<ol style="list-style-type: decimal">
+<li>Select the Files Tab</li>
+<li>Select the folder of file by ticking the box next to it</li>
+<li>Click More</li>
+<li>Click “Export”</li>
+<li>Rename if you need and click download – it will download to your default downloads space (usually on PCs a folder called downloads). If you select a whole folder, it will download as a zipped folder and you will need to unzip it.</li>
+</ol>
+<div class="figure">
+<img src="images/download_files.png" alt="Image of the downloading instructions" />
+<p class="caption"><em>Image of the downloading instructions</em></p>
+</div>
+<p><em>October 1, 2020. -HP and DB</em></p>
+</div>
+</div>
+<div id="troubleshooting" class="section level2">
+<h2><span class="header-section-number">1.4</span> Troubleshooting</h2>
+<div id="rtools" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> I am unable to install pacakges from source.</h3>
+<p>If you are not able to install packages from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.</p>
+<ul>
+<li><p>If you are a Windows user</p>
+<ul>
+<li>Go to <a href="https://cran.r-project.org/bin/windows/Rtools" class="uri">https://cran.r-project.org/bin/windows/Rtools</a>. Download and install the “recommended” version.</li>
+</ul></li>
+</ul>
+</div>
+<div id="catalina" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Problems with RStudio in MacOS 10.15 Catalina</h3>
+<p>When you first open RStudio, you might get a warning that says:</p>
+<div class="figure">
+<img src="images/mac01_ct.png" alt="The “git” command requires the command line developer tools. Would you like to install the tools now?" />
+<p class="caption"><em>The “git” command requires the command line developer tools. Would you like to install the tools now?</em></p>
+</div>
+<p>Click <strong><code>Install</code></strong> just in case Apple sorts out their problem so you get the most up to date version. But you’re likely to get this error message:</p>
+<div class="figure">
+<img src="images/mac02_no_ct.png" alt="Can’t install the software because it is not currently available from the Software Update server." />
+<p class="caption"><em>Can’t install the software because it is not currently available from the Software Update server.</em></p>
+</div>
+<p>Go to <a href="https://developer.apple.com/download/more/">Apple Developer</a>. You might need to sign in with your Apple ID.</p>
+<p>Choose Command Line Tools for Xcode 12 (not the beta) at <a href="https://developer.apple.com/download/more/" class="uri">https://developer.apple.com/download/more/</a>. You don’t need to install Xcode 12. Download the DMG, open it, and follow the instructions to install it. You will need your computer password.</p>
+<div class="figure">
+<img src="images/mac03_devtools.png" alt="More Downloads for Apple Developers - install Command Line Tools for Xcode 12" />
+<p class="caption"><em>More Downloads for Apple Developers - install Command Line Tools for Xcode 12</em></p>
+</div>
+<p>After you install the command line tools, you can delete the disk image (.dmg file). Quit RStudio if it is open and reopen it.</p>
+<p>You might be asked to install new packages, such as xfun. Just click <strong><code>Yes</code></strong> to install them. If you are not asked to install packages when you open RStudio, or after you do install them, try to open a new R Markdown file. This will probably prompt more installations.</p>
+<div class="figure">
+<img src="images/mac04_rmd_install.png" alt="Install Required Packages" />
+<p class="caption"><em>Install Required Packages</em></p>
+</div>
+<p>There will be a lot of red output in the RStudio console, but this is normal.</p>
+<div class="figure">
+<img src="images/mac05_installing.png" alt="Installing Packages" />
+<p class="caption"><em>Installing Packages</em></p>
+</div>
+<p>After this, try to make a new R Markdown file and knit the demo file to html. You should be all set now.</p>
+<p>Thanks to Ashley McCluskey for figuring out where to get the command tools!</p>
+<p><em>2020 October 1 -LDB</em></p>
+</div>
+<div id="when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> When I start RStudio, I get the error “Fatal error: unable to initialize the JIT”</h3>
+<p>This error crops up sometimes when using R on campus computers. This is due to a bug in your campus profile. Please speak to the <a href="https://www.gla.ac.uk/myglasgow/it/helpdesk/" target="_blank">IT Helpdesk</a>.</p>
+<p><em>November 6, 2019. -DB</em></p>
+
+</div>
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="microsoft-teams.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
