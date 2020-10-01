@@ -24,7 +24,7 @@
 <meta name="author" content="Team #PsyTeachR" />
 
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2020-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,13 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,6 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#im-getting-an-error-when-i-try-to-start-up-rstudio."><i class="fa fa-check"></i><b>1.2</b> I’m getting an error when I try to start up RStudio.</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#i-am-on-a-campus-computer-and-the-error-is-fatal-error-unable-to-initialize-the-jit"><i class="fa fa-check"></i><b>1.2.1</b> I am on a campus computer, and the error is: “Fatal error: unable to initialize the JIT”</a></li>
 </ul></li>
+<li class="chapter" data-level="1.3" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#i-am-using-macos-10.15-catalina"><i class="fa fa-check"></i><b>1.3</b> I am using MacOS 10.15 Catalina</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Working with R and RStudio</a><ul>
 <li class="chapter" data-level="2.1" data-path="working-with-r-and-rstudio.html"><a href="working-with-r-and-rstudio.html#what-is-the-best-way-to-share-code-on-microsoft-teams"><i class="fa fa-check"></i><b>2.1</b> What is the best way to share code on Microsoft Teams?</a><ul>
@@ -189,146 +193,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="importing-data-from-multiple-files" class="section level2">
 <h2><span class="header-section-number">5.1</span> Importing data from multiple files</h2>
 <p>The following code allows you to read in a whole bunch of files from a directory <code>datadir</code> all at once into a big table. If the files are in the same directory as your script, replace <code>datadir</code> with a full stop, i.e., <code>dir(".", "\\.[Cc][Ss][Vv]$")</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co"># &quot;\\.csv$&quot; = find all files ending with csv or CSV</span></a>
-<a class="sourceLine" id="cb6-4" title="4">todo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">filename =</span> <span class="kw">dir</span>(<span class="st">&quot;datadir&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.[Cc][Ss][Vv]$&quot;</span>))</a>
-<a class="sourceLine" id="cb6-5" title="5"></a>
-<a class="sourceLine" id="cb6-6" title="6">all_data &lt;-<span class="st"> </span>todo <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imported =</span> <span class="kw">map</span>(filename, read_csv)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="st">  </span><span class="kw">unnest</span>(imported)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-wrangling.html#cb6-1"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb6-2"><a href="data-wrangling.html#cb6-2"></a></span>
+<span id="cb6-3"><a href="data-wrangling.html#cb6-3"></a><span class="co"># &quot;\\.csv$&quot; = find all files ending with csv or CSV</span></span>
+<span id="cb6-4"><a href="data-wrangling.html#cb6-4"></a>todo &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">filename =</span> <span class="kw">dir</span>(<span class="st">&quot;datadir&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.[Cc][Ss][Vv]$&quot;</span>))</span>
+<span id="cb6-5"><a href="data-wrangling.html#cb6-5"></a></span>
+<span id="cb6-6"><a href="data-wrangling.html#cb6-6"></a>all_data &lt;-<span class="st"> </span>todo <span class="op">%&gt;%</span></span>
+<span id="cb6-7"><a href="data-wrangling.html#cb6-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">imported =</span> <span class="kw">map</span>(filename, read_csv)) <span class="op">%&gt;%</span></span>
+<span id="cb6-8"><a href="data-wrangling.html#cb6-8"></a><span class="st">  </span><span class="kw">unnest</span>(imported)</span></code></pre></div>
 <p>If there is preprocessing you need to do on each file before reading it in, you can write your own function and call that in place of <code>read_csv()</code>.</p>
 <p><em>October 30, 2019. -DB</em></p>
 </div>
 <div id="detecting-runs-in-a-sequence" class="section level2">
 <h2><span class="header-section-number">5.2</span> Detecting “runs” in a sequence</h2>
 <p>Let’s say you have a table like below, and you want to find the start and end frames where you have a run of <code>Z</code> amidst a, b, c, d. Here is code that sets up this kind of situation. Don’t worry if you don’t understand this code; just run it to create the example data in <code>runsdata</code>, and have a look at that table.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3">create_run_vec &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb7-4" title="4">  <span class="co">## create a random string of letters with two runs</span></a>
-<a class="sourceLine" id="cb7-5" title="5">  <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),</a>
-<a class="sourceLine" id="cb7-6" title="6">               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb7-7" title="7">               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),</a>
-<a class="sourceLine" id="cb7-8" title="8">               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb7-9" title="9">               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dv">2</span>), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="ot">TRUE</span>)))</a>
-<a class="sourceLine" id="cb7-10" title="10">}</a>
-<a class="sourceLine" id="cb7-11" title="11"></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co">## 5 subjects, 3 trials each</span></a>
-<a class="sourceLine" id="cb7-13" title="13">runsdata &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb7-14" title="14">  <span class="dt">subject =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each =</span> <span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb7-15" title="15">  <span class="dt">trial =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb7-16" title="16">  <span class="dt">stimulus =</span> <span class="kw">rerun</span>(<span class="dv">15</span>, <span class="kw">create_run_vec</span>())) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="st">  </span><span class="kw">unnest</span>(stimulus) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="st">  </span><span class="kw">group_by</span>(subject, trial) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-19" title="19"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-20" title="20"><span class="st">  </span><span class="kw">select</span>(subject, trial, stimulus)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-wrangling.html#cb7-1"></a><span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb7-2"><a href="data-wrangling.html#cb7-2"></a></span>
+<span id="cb7-3"><a href="data-wrangling.html#cb7-3"></a>create_run_vec &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb7-4"><a href="data-wrangling.html#cb7-4"></a>  <span class="co">## create a random string of letters with two runs</span></span>
+<span id="cb7-5"><a href="data-wrangling.html#cb7-5"></a>  <span class="kw">c</span>(<span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),</span>
+<span id="cb7-6"><a href="data-wrangling.html#cb7-6"></a>               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb7-7"><a href="data-wrangling.html#cb7-7"></a>               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">TRUE</span>)),</span>
+<span id="cb7-8"><a href="data-wrangling.html#cb7-8"></a>               <span class="kw">rep</span>(<span class="st">&quot;Z&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb7-9"><a href="data-wrangling.html#cb7-9"></a>               <span class="kw">rep</span>(<span class="kw">sample</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dv">2</span>), <span class="kw">sample</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="ot">TRUE</span>)))</span>
+<span id="cb7-10"><a href="data-wrangling.html#cb7-10"></a>}</span>
+<span id="cb7-11"><a href="data-wrangling.html#cb7-11"></a></span>
+<span id="cb7-12"><a href="data-wrangling.html#cb7-12"></a><span class="co">## 5 subjects, 3 trials each</span></span>
+<span id="cb7-13"><a href="data-wrangling.html#cb7-13"></a>runsdata &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb7-14"><a href="data-wrangling.html#cb7-14"></a>  <span class="dt">subject =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each =</span> <span class="dv">3</span>),</span>
+<span id="cb7-15"><a href="data-wrangling.html#cb7-15"></a>  <span class="dt">trial =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb7-16"><a href="data-wrangling.html#cb7-16"></a>  <span class="dt">stimulus =</span> <span class="kw">rerun</span>(<span class="dv">15</span>, <span class="kw">create_run_vec</span>())) <span class="op">%&gt;%</span></span>
+<span id="cb7-17"><a href="data-wrangling.html#cb7-17"></a><span class="st">  </span><span class="kw">unnest</span>(stimulus) <span class="op">%&gt;%</span></span>
+<span id="cb7-18"><a href="data-wrangling.html#cb7-18"></a><span class="st">  </span><span class="kw">group_by</span>(subject, trial) <span class="op">%&gt;%</span></span>
+<span id="cb7-19"><a href="data-wrangling.html#cb7-19"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb7-20"><a href="data-wrangling.html#cb7-20"></a><span class="st">  </span><span class="kw">select</span>(subject, trial, stimulus)</span></code></pre></div>
 <p>Let’s say you want to find the start and stop frames where <code>Z</code> appears in <code>stimulus</code>, and do this independently for each combination of <code>subject</code> and <code>trial</code>. Here’s how <code>stimulus</code> looks for subject 1 and trial 1.</p>
-<pre><code>##  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot;
-## [20] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot;
-## [39] &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
-<p>So here you can see that the first run of Zs is from frame 17 to 19, 35 and the second is from 33 to 35. We want to write a function that processes the data for each trial and results in a table like this:</p>
+<pre><code>##  [1] &quot;b&quot; &quot;b&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot;
+## [20] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;b&quot; &quot;b&quot; &quot;Z&quot; &quot;Z&quot; &quot;Z&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot; &quot;b&quot; &quot;b&quot;</code></pre>
+<p>So here you can see that the first run of Zs is from frame 14 to 16, 32 and the second is from 30 to 32. We want to write a function that processes the data for each trial and results in a table like this:</p>
 <pre><code>## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;       &lt;int&gt;     &lt;int&gt;
-## 1       1     1     1          17        19
-## 2       1     1     2          33        35</code></pre>
+## 1       1     1     1          14        16
+## 2       1     1     2          30        32</code></pre>
 <p>The first thing to do is to add a logical vector to your tibble whose value is <code>TRUE</code> when the target value (e.g., <code>Z</code>) is present in the sequence, false otherwise.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">runsdata_tgt &lt;-<span class="st"> </span>runsdata <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_target =</span> (stimulus <span class="op">==</span><span class="st"> &quot;Z&quot;</span>))</a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4">runsdata_tgt</a></code></pre></div>
-<pre><code>## # A tibble: 535 x 4
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-wrangling.html#cb10-1"></a>runsdata_tgt &lt;-<span class="st"> </span>runsdata <span class="op">%&gt;%</span></span>
+<span id="cb10-2"><a href="data-wrangling.html#cb10-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">is_target =</span> (stimulus <span class="op">==</span><span class="st"> &quot;Z&quot;</span>))</span>
+<span id="cb10-3"><a href="data-wrangling.html#cb10-3"></a></span>
+<span id="cb10-4"><a href="data-wrangling.html#cb10-4"></a>runsdata_tgt</span></code></pre></div>
+<pre><code>## # A tibble: 548 x 4
 ##    subject trial stimulus is_target
 ##      &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;lgl&gt;    
-##  1       1     1 a        FALSE    
-##  2       1     1 a        FALSE    
+##  1       1     1 b        FALSE    
+##  2       1     1 b        FALSE    
 ##  3       1     1 a        FALSE    
 ##  4       1     1 a        FALSE    
-##  5       1     1 c        FALSE    
+##  5       1     1 a        FALSE    
 ##  6       1     1 c        FALSE    
 ##  7       1     1 c        FALSE    
 ##  8       1     1 c        FALSE    
-##  9       1     1 d        FALSE    
+##  9       1     1 c        FALSE    
 ## 10       1     1 d        FALSE    
-## # … with 525 more rows</code></pre>
+## # … with 538 more rows</code></pre>
 <p>We want to iterate over subjects and trials. We’ll start by creating a tibble with columns <code>is_target</code> nested into a column called <code>subtbl</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">runs_nest &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>stimulus) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># don&#39;t need it anymore</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw">nest</span>(<span class="dt">subtbl =</span> <span class="kw">c</span>(is_target))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-wrangling.html#cb12-1"></a>runs_nest &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="data-wrangling.html#cb12-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>stimulus) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># don&#39;t need it anymore</span></span>
+<span id="cb12-3"><a href="data-wrangling.html#cb12-3"></a><span class="st">  </span><span class="kw">nest</span>(<span class="dt">subtbl =</span> <span class="kw">c</span>(is_target))</span></code></pre></div>
 <p>We want to iterate over the little subtables stored within <code>subtbl</code> in each row of the table, passing the table to a function that will find the runs and return another table, which we’ll store in new column. Let’s write a function to detect the runs. That function will need the function <code>rle()</code> (Run-Length Encoding) from base R. We’ll run that on the logical vector we created (<code>is_target</code>). Before creating the function, let’s see what <code>rle()</code> does on the values in <code>is_target</code> for subject 1, trial 1.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">s1t1 &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(subject <span class="op">==</span><span class="st"> </span>1L, trial <span class="op">==</span><span class="st"> </span>1L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(is_target)</a>
-<a class="sourceLine" id="cb13-2" title="2"></a>
-<a class="sourceLine" id="cb13-3" title="3">s1t1</a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="kw">rle</span>(s1t1)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-wrangling.html#cb13-1"></a>s1t1 &lt;-<span class="st"> </span>runsdata_tgt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(subject <span class="op">==</span><span class="st"> </span>1L, trial <span class="op">==</span><span class="st"> </span>1L) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(is_target)</span>
+<span id="cb13-2"><a href="data-wrangling.html#cb13-2"></a></span>
+<span id="cb13-3"><a href="data-wrangling.html#cb13-3"></a>s1t1</span>
+<span id="cb13-4"><a href="data-wrangling.html#cb13-4"></a></span>
+<span id="cb13-5"><a href="data-wrangling.html#cb13-5"></a><span class="kw">rle</span>(s1t1)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [13] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
-## [37] FALSE FALSE FALSE FALSE FALSE FALSE
+## [13] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+## [37] FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 16 3 13 3 7
+##   lengths: int [1:5] 13 3 13 3 6
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE</code></pre>
 <p>If that doesn’t make sense, look at the help for <code>rle()</code> (type <code>?rle</code> in the console). Now we’re ready to write our function, <code>detect_runs()</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">detect_runs &lt;-<span class="st"> </span><span class="cf">function</span>(x) {  </a>
-<a class="sourceLine" id="cb15-2" title="2">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.logical</span>(x[[<span class="dv">1</span>]])) <span class="kw">stop</span>(<span class="st">&quot;&#39;x&#39; must be a tibble whose first column is of type &#39;logical&#39;&quot;</span>)</a>
-<a class="sourceLine" id="cb15-3" title="3">  runs &lt;-<span class="st"> </span><span class="kw">rle</span>(x[[<span class="dv">1</span>]])</a>
-<a class="sourceLine" id="cb15-4" title="4">  run_start_fr &lt;-<span class="st"> </span><span class="kw">c</span>(1L, <span class="kw">cumsum</span>(runs<span class="op">$</span>lengths[<span class="op">-</span><span class="kw">length</span>(runs<span class="op">$</span>lengths)]) <span class="op">+</span><span class="st"> </span>1L)</a>
-<a class="sourceLine" id="cb15-5" title="5">  run_end_fr &lt;-<span class="st"> </span>run_start_fr <span class="op">+</span><span class="st"> </span>(runs<span class="op">$</span>lengths <span class="op">-</span><span class="st"> </span>1L)</a>
-<a class="sourceLine" id="cb15-6" title="6">  </a>
-<a class="sourceLine" id="cb15-7" title="7">  tgt_start &lt;-<span class="st"> </span>run_start_fr[runs<span class="op">$</span>values]</a>
-<a class="sourceLine" id="cb15-8" title="8">  tgt_end &lt;-<span class="st"> </span>run_end_fr[runs<span class="op">$</span>value]</a>
-<a class="sourceLine" id="cb15-9" title="9">  <span class="kw">tibble</span>(<span class="dt">run =</span> <span class="kw">seq_along</span>(tgt_start),</a>
-<a class="sourceLine" id="cb15-10" title="10">         <span class="dt">start_fr =</span> tgt_start,</a>
-<a class="sourceLine" id="cb15-11" title="11">         <span class="dt">end_fr =</span> tgt_end)</a>
-<a class="sourceLine" id="cb15-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-wrangling.html#cb15-1"></a>detect_runs &lt;-<span class="st"> </span><span class="cf">function</span>(x) {  </span>
+<span id="cb15-2"><a href="data-wrangling.html#cb15-2"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.logical</span>(x[[<span class="dv">1</span>]])) <span class="kw">stop</span>(<span class="st">&quot;&#39;x&#39; must be a tibble whose first column is of type &#39;logical&#39;&quot;</span>)</span>
+<span id="cb15-3"><a href="data-wrangling.html#cb15-3"></a>  runs &lt;-<span class="st"> </span><span class="kw">rle</span>(x[[<span class="dv">1</span>]])</span>
+<span id="cb15-4"><a href="data-wrangling.html#cb15-4"></a>  run_start_fr &lt;-<span class="st"> </span><span class="kw">c</span>(1L, <span class="kw">cumsum</span>(runs<span class="op">$</span>lengths[<span class="op">-</span><span class="kw">length</span>(runs<span class="op">$</span>lengths)]) <span class="op">+</span><span class="st"> </span>1L)</span>
+<span id="cb15-5"><a href="data-wrangling.html#cb15-5"></a>  run_end_fr &lt;-<span class="st"> </span>run_start_fr <span class="op">+</span><span class="st"> </span>(runs<span class="op">$</span>lengths <span class="op">-</span><span class="st"> </span>1L)</span>
+<span id="cb15-6"><a href="data-wrangling.html#cb15-6"></a>  </span>
+<span id="cb15-7"><a href="data-wrangling.html#cb15-7"></a>  tgt_start &lt;-<span class="st"> </span>run_start_fr[runs<span class="op">$</span>values]</span>
+<span id="cb15-8"><a href="data-wrangling.html#cb15-8"></a>  tgt_end &lt;-<span class="st"> </span>run_end_fr[runs<span class="op">$</span>value]</span>
+<span id="cb15-9"><a href="data-wrangling.html#cb15-9"></a>  <span class="kw">tibble</span>(<span class="dt">run =</span> <span class="kw">seq_along</span>(tgt_start),</span>
+<span id="cb15-10"><a href="data-wrangling.html#cb15-10"></a>         <span class="dt">start_fr =</span> tgt_start,</span>
+<span id="cb15-11"><a href="data-wrangling.html#cb15-11"></a>         <span class="dt">end_fr =</span> tgt_end)</span>
+<span id="cb15-12"><a href="data-wrangling.html#cb15-12"></a>}</span></code></pre></div>
 <p>We can test the function on <code>s1t1</code> just to make sure it works.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">detect_runs</span>(<span class="kw">tibble</span>(<span class="dt">lvec =</span> s1t1))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-wrangling.html#cb16-1"></a><span class="kw">detect_runs</span>(<span class="kw">tibble</span>(<span class="dt">lvec =</span> s1t1))</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
-## 1     1       17     19
-## 2     2       33     35</code></pre>
+## 1     1       14     16
+## 2     2       30     32</code></pre>
 <p>OK, now we’re ready to run the function.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">result &lt;-<span class="st"> </span>runs_nest <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">runstbl =</span> <span class="kw">map</span>(subtbl, detect_runs))</a>
-<a class="sourceLine" id="cb18-3" title="3"></a>
-<a class="sourceLine" id="cb18-4" title="4">result</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-wrangling.html#cb18-1"></a>result &lt;-<span class="st"> </span>runs_nest <span class="op">%&gt;%</span></span>
+<span id="cb18-2"><a href="data-wrangling.html#cb18-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">runstbl =</span> <span class="kw">map</span>(subtbl, detect_runs))</span>
+<span id="cb18-3"><a href="data-wrangling.html#cb18-3"></a></span>
+<span id="cb18-4"><a href="data-wrangling.html#cb18-4"></a>result</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 4
 ##    subject trial subtbl            runstbl         
 ##      &lt;int&gt; &lt;int&gt; &lt;list&gt;            &lt;list&gt;          
-##  1       1     1 &lt;tibble [42 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  1       1     1 &lt;tibble [38 × 1]&gt; &lt;tibble [2 × 3]&gt;
 ##  2       1     2 &lt;tibble [37 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  3       1     3 &lt;tibble [34 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  4       2     1 &lt;tibble [38 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  5       2     2 &lt;tibble [38 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  6       2     3 &lt;tibble [31 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  7       3     1 &lt;tibble [35 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  8       3     2 &lt;tibble [33 × 1]&gt; &lt;tibble [2 × 3]&gt;
-##  9       3     3 &lt;tibble [36 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 10       4     1 &lt;tibble [36 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 11       4     2 &lt;tibble [33 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 12       4     3 &lt;tibble [36 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 13       5     1 &lt;tibble [35 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 14       5     2 &lt;tibble [37 × 1]&gt; &lt;tibble [2 × 3]&gt;
-## 15       5     3 &lt;tibble [34 × 1]&gt; &lt;tibble [2 × 3]&gt;</code></pre>
+##  3       1     3 &lt;tibble [39 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  4       2     1 &lt;tibble [36 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  5       2     2 &lt;tibble [41 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  6       2     3 &lt;tibble [37 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  7       3     1 &lt;tibble [36 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  8       3     2 &lt;tibble [34 × 1]&gt; &lt;tibble [2 × 3]&gt;
+##  9       3     3 &lt;tibble [32 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 10       4     1 &lt;tibble [33 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 11       4     2 &lt;tibble [40 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 12       4     3 &lt;tibble [37 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 13       5     1 &lt;tibble [37 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 14       5     2 &lt;tibble [32 × 1]&gt; &lt;tibble [2 × 3]&gt;
+## 15       5     3 &lt;tibble [39 × 1]&gt; &lt;tibble [2 × 3]&gt;</code></pre>
 <p>Now we just have to unnest and we’re done!</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">result <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>subtbl) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span><span class="kw">unnest</span>(runstbl)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-wrangling.html#cb20-1"></a>result <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="data-wrangling.html#cb20-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>subtbl) <span class="op">%&gt;%</span></span>
+<span id="cb20-3"><a href="data-wrangling.html#cb20-3"></a><span class="st">  </span><span class="kw">unnest</span>(runstbl)</span></code></pre></div>
 <pre><code>## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;int&gt;
-##  1       1     1     1       17     19
-##  2       1     1     2       33     35
+##  1       1     1     1       14     16
+##  2       1     1     2       30     32
 ##  3       1     2     1       15     17
-##  4       1     2     2       29     31
+##  4       1     2     2       30     32
 ##  5       1     3     1       14     16
-##  6       1     3     2       27     29
-##  7       2     1     1       15     17
-##  8       2     1     2       30     32
-##  9       2     2     1       13     15
-## 10       2     2     2       29     31
+##  6       1     3     2       29     31
+##  7       2     1     1       14     16
+##  8       2     1     2       29     31
+##  9       2     2     1       15     17
+## 10       2     2     2       31     33
 ## # … with 20 more rows</code></pre>
 <p><em>October 30, 2019. -DB</em></p>
 
