@@ -79,20 +79,20 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "a" "a" "d" "d" "d" "d" "c" "c" "c" "c" "b" "b" "Z" "Z" "Z" "b" "b" "b" "b"
-## [20] "a" "a" "a" "a" "c" "c" "c" "c" "d" "d" "Z" "Z" "Z" "d" "d" "d" "d" "b" "b"
-## [39] "b"
+##  [1] "b" "b" "b" "b" "c" "c" "c" "c" "a" "a" "a" "d" "d" "d" "d" "Z" "Z" "Z" "a"
+## [20] "a" "a" "b" "b" "d" "d" "c" "c" "c" "Z" "Z" "Z" "b" "b" "b" "b" "a" "a" "a"
+## [39] "a"
 ```
 
-So here you can see that the first run of Zs is from frame 13 to 15, 32 and the second is from 30 to 32. We want to write a function that processes the data for each trial and results in a table like this:
+So here you can see that the first run of Zs is from frame 16 to 18, 31 and the second is from 29 to 31. We want to write a function that processes the data for each trial and results in a table like this:
 
 
 ```
 ## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     <dbl> <dbl> <int>       <int>     <int>
-## 1       1     1     1          13        15
-## 2       1     1     2          30        32
+## 1       1     1     1          16        18
+## 2       1     1     2          29        31
 ```
 
 The first thing to do is to add a logical vector to your tibble whose value is `TRUE` when the target value (e.g., `Z`) is present in the sequence, false otherwise.
@@ -106,20 +106,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 550 x 4
+## # A tibble: 540 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
-##  1       1     1 a        FALSE    
-##  2       1     1 a        FALSE    
-##  3       1     1 d        FALSE    
-##  4       1     1 d        FALSE    
-##  5       1     1 d        FALSE    
-##  6       1     1 d        FALSE    
+##  1       1     1 b        FALSE    
+##  2       1     1 b        FALSE    
+##  3       1     1 b        FALSE    
+##  4       1     1 b        FALSE    
+##  5       1     1 c        FALSE    
+##  6       1     1 c        FALSE    
 ##  7       1     1 c        FALSE    
 ##  8       1     1 c        FALSE    
-##  9       1     1 c        FALSE    
-## 10       1     1 c        FALSE    
-## # … with 540 more rows
+##  9       1     1 a        FALSE    
+## 10       1     1 a        FALSE    
+## # … with 530 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -144,11 +144,11 @@ rle(s1t1)
 
 ```
 ##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [25] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+## [13] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
 ## [37] FALSE FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 12 3 14 3 7
+##   lengths: int [1:5] 15 3 10 3 8
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -181,8 +181,8 @@ detect_runs(tibble(lvec = s1t1))
 ## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   <int>    <int>  <int>
-## 1     1       13     15
-## 2     2       30     32
+## 1     1       16     18
+## 2     2       29     31
 ```
 
 OK, now we're ready to run the function.
@@ -200,19 +200,19 @@ result
 ##    subject trial subtbl            runstbl         
 ##      <int> <int> <list>            <list>          
 ##  1       1     1 <tibble [39 × 1]> <tibble [2 × 3]>
-##  2       1     2 <tibble [34 × 1]> <tibble [2 × 3]>
-##  3       1     3 <tibble [39 × 1]> <tibble [2 × 3]>
-##  4       2     1 <tibble [34 × 1]> <tibble [2 × 3]>
-##  5       2     2 <tibble [38 × 1]> <tibble [2 × 3]>
-##  6       2     3 <tibble [37 × 1]> <tibble [2 × 3]>
-##  7       3     1 <tibble [36 × 1]> <tibble [2 × 3]>
-##  8       3     2 <tibble [34 × 1]> <tibble [2 × 3]>
-##  9       3     3 <tibble [35 × 1]> <tibble [2 × 3]>
-## 10       4     1 <tibble [34 × 1]> <tibble [2 × 3]>
-## 11       4     2 <tibble [41 × 1]> <tibble [2 × 3]>
-## 12       4     3 <tibble [32 × 1]> <tibble [2 × 3]>
-## 13       5     1 <tibble [39 × 1]> <tibble [2 × 3]>
-## 14       5     2 <tibble [40 × 1]> <tibble [2 × 3]>
+##  2       1     2 <tibble [38 × 1]> <tibble [2 × 3]>
+##  3       1     3 <tibble [32 × 1]> <tibble [2 × 3]>
+##  4       2     1 <tibble [36 × 1]> <tibble [2 × 3]>
+##  5       2     2 <tibble [36 × 1]> <tibble [2 × 3]>
+##  6       2     3 <tibble [36 × 1]> <tibble [2 × 3]>
+##  7       3     1 <tibble [38 × 1]> <tibble [2 × 3]>
+##  8       3     2 <tibble [29 × 1]> <tibble [2 × 3]>
+##  9       3     3 <tibble [37 × 1]> <tibble [2 × 3]>
+## 10       4     1 <tibble [33 × 1]> <tibble [2 × 3]>
+## 11       4     2 <tibble [37 × 1]> <tibble [2 × 3]>
+## 12       4     3 <tibble [38 × 1]> <tibble [2 × 3]>
+## 13       5     1 <tibble [38 × 1]> <tibble [2 × 3]>
+## 14       5     2 <tibble [35 × 1]> <tibble [2 × 3]>
 ## 15       5     3 <tibble [38 × 1]> <tibble [2 × 3]>
 ```
 
@@ -229,16 +229,16 @@ result %>%
 ## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      <int> <int> <int>    <int>  <int>
-##  1       1     1     1       13     15
-##  2       1     1     2       30     32
-##  3       1     2     1       13     15
-##  4       1     2     2       26     28
-##  5       1     3     1       13     15
-##  6       1     3     2       30     32
-##  7       2     1     1        9     11
-##  8       2     1     2       24     26
-##  9       2     2     1       13     15
-## 10       2     2     2       29     31
+##  1       1     1     1       16     18
+##  2       1     1     2       29     31
+##  3       1     2     1       12     14
+##  4       1     2     2       28     30
+##  5       1     3     1       12     14
+##  6       1     3     2       25     27
+##  7       2     1     1       13     15
+##  8       2     1     2       28     30
+##  9       2     2     1       15     17
+## 10       2     2     2       30     32
 ## # … with 20 more rows
 ```
 
