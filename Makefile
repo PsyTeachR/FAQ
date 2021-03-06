@@ -1,2 +1,2 @@
 default :
-	Rscript -e "bookdown::render_book('index.Rmd')"
+	Rscript -e "utils::browseURL(bookdown::render_book('index.Rmd'))"

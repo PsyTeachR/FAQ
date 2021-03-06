@@ -37,7 +37,7 @@ xcode-select --install
 
 ## I am unable to install add-on packages from source. {#rtools}
 
-If you are not able to install packages from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.
+If you are not able to install `r glossary("package", "packages")` from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.
 
 * If you are a Windows user
 
@@ -65,15 +65,15 @@ You might be asked to install new packages, such as xfun. Just click **`Yes`** t
 
 ![*Install Required Packages*](images/mac04_rmd_install.png)
 
-There will be a lot of red output in the RStudio console, but this is normal. 
+There will be a lot of red output in the RStudio `r glossary("console")`, but this is normal. 
 
 ![*Installing Packages*](images/mac05_installing.png)
 
-After this, try to make a new R Markdown file and knit the demo file to html. You should be all set now.
+After this, try to make a new `r glossary("R Markdown")` file and `r glossary("knit")` the demo file to html. You should be all set now.
 
 Thanks to Ashley McCluskey for figuring out where to get the command tools!
 
-*2020 October 1 -LDB*
+*October 1, 2020. -LDB*
 
 ## When I start RStudio, I get the error "Fatal error: unable to initialize the JIT"
 

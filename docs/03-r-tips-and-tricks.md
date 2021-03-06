@@ -1,14 +1,16 @@
 # R Tips and Tricks
 
-## How do I get nicely formatted R code into a Word document?
+## Show R code in Word
+
+How do I get nicely formatted R code into a Word document?
 
 You might want to include your R code as an appendix in a document. If you just cut and paste it in, the formatting will look terrible. So here is a trick that allows you to get nicely formatted R code into Word.
 
-First step: open a new R Markdown file which you will paste the code into. For the output format, select Word.
+First step: open a new <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> file which you will paste the code into. For the output format, select Word.
 
 ![](images/rmarkdown-word-code-1.png)
 
-Second step: paste the code into a block with chunk options `eval=FALSE, echo=TRUE`.
+Second step: paste the code into a block with <a class='glossary' target='_blank' title='A block of R code in an R Markdown file.' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a> options `eval=FALSE, echo=TRUE`.
 
 ````
 ```{r verb, eval = FALSE, echo=TRUE}
@@ -25,11 +27,54 @@ Third step: compile to Word. You can now copy and paste the formatted code into 
 
 ![](images/rmarkdown-word-code-2.png)
 
-*March 23, 2020 -DB*
+*March 23, 2020. -DB*
 
-## Importing data from multiple files
+## Save plots as images
 
-The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.  If the files are in the same directory as your script, replace `datadir` with a full stop, i.e., `dir(".", "\\.[Cc][Ss][Vv]$")`.
+Copying and pasting image from R to Word usually results in images that have very poor resolution and aren't an ideal aspect ratio. You should **always** save plots as images if you are going to use them in another file.
+
+If you are using {ggplot2} to make plots, or {cowplot} to make multi-panel figures, you can save the plot using `ggsave()`. First, make the plot.
+
+
+```r
+ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
+  facet_wrap(~color, ncol = 4, labeller = label_both) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = lm, formula = y~x + I(x^2)) +
+  guides(color = guide_legend(reverse = TRUE)) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = c(.88, .25))
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-r-tips-and-tricks_files/figure-html/unnamed-chunk-1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)**CAPTION THIS FIGURE!!**</p>
+</div>
+
+By default, `ggsave()` will save the last plot you made. If you saved the plot to an object, you can also set the `plot` argument to that. Set the filename with .png or .pdf at the end to get the best-quality images. Set the width and height in inches. You might need some trial and error before you're happy with the outcome. You can change the image size and/or the `base_size` in the theme to make the fonts larger or smaller. The image resolution (`dpi`) defaults to 300, and this works well for most purposes, but you can set it to another value if a journal requires figures to be in a specific DPI.
+
+
+```r
+ggsave(filename = "images/diamonds.png", width = 10, height = 5)
+```
+
+If you want to use the image in an <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> file, you can use the code below.
+
+
+```r
+knitr::include_graphics("images/diamonds.png")
+```
+
+<div class="figure" style="text-align: center">
+<img src="images/diamonds.png" alt="Saved Image" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Saved Image</p>
+</div>
+
+*March 6, 2021. -LDB*
+
+## Import data from multiple files
+
+The following code allows you to read in a whole bunch of files from a directory `datadir` all at once into a big table.  If the files are in the same directory as your <a class='glossary' target='_blank' title='A plain-text file that contains commands in a coding language, such as R.' href='https://psyteachr.github.io/glossary/s#script'>script</a>, replace `datadir` with a full stop, i.e., `dir(".", "\\.[Cc][Ss][Vv]$")`.
 
 
 ```r
@@ -47,7 +92,7 @@ If there is preprocessing you need to do on each file before reading it in, you 
 
 *October 30, 2019. -DB*
 
-## Detecting "runs" in a sequence
+## Detect "runs" in a sequence
 
 Let's say you have a table like below, and you want to find the start and end frames where you have a run of `Z` amidst a, b, c, d.  Here is code that sets up this kind of situation. Don't worry if you don't understand this code; just run it to create the example data in `runsdata`, and have a look at that table.
 
@@ -79,20 +124,20 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "b" "b" "b" "b" "c" "c" "c" "c" "a" "a" "a" "d" "d" "d" "d" "Z" "Z" "Z" "a"
-## [20] "a" "a" "b" "b" "d" "d" "c" "c" "c" "Z" "Z" "Z" "b" "b" "b" "b" "a" "a" "a"
-## [39] "a"
+##  [1] "c" "c" "a" "a" "a" "a" "d" "d" "d" "d" "b" "b" "b" "b" "Z" "Z" "Z" "a" "a"
+## [20] "a" "a" "c" "c" "c" "c" "b" "b" "b" "d" "d" "d" "Z" "Z" "Z" "d" "d" "d" "c"
+## [39] "c" "c" "c"
 ```
 
-So here you can see that the first run of Zs is from frame 16 to 18, 31 and the second is from 29 to 31. We want to write a function that processes the data for each trial and results in a table like this:
+So here you can see that the first run of Zs is from frame 15 to 17, 34 and the second is from 32 to 34. We want to write a function that processes the data for each trial and results in a table like this:
 
 
 ```
 ## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     <dbl> <dbl> <int>       <int>     <int>
-## 1       1     1     1          16        18
-## 2       1     1     2          29        31
+## 1       1     1     1          15        17
+## 2       1     1     2          32        34
 ```
 
 The first thing to do is to add a logical vector to your tibble whose value is `TRUE` when the target value (e.g., `Z`) is present in the sequence, false otherwise.
@@ -106,20 +151,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 540 x 4
+## # A tibble: 553 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
-##  1       1     1 b        FALSE    
-##  2       1     1 b        FALSE    
-##  3       1     1 b        FALSE    
-##  4       1     1 b        FALSE    
-##  5       1     1 c        FALSE    
-##  6       1     1 c        FALSE    
-##  7       1     1 c        FALSE    
-##  8       1     1 c        FALSE    
-##  9       1     1 a        FALSE    
-## 10       1     1 a        FALSE    
-## # … with 530 more rows
+##  1       1     1 c        FALSE    
+##  2       1     1 c        FALSE    
+##  3       1     1 a        FALSE    
+##  4       1     1 a        FALSE    
+##  5       1     1 a        FALSE    
+##  6       1     1 a        FALSE    
+##  7       1     1 d        FALSE    
+##  8       1     1 d        FALSE    
+##  9       1     1 d        FALSE    
+## 10       1     1 d        FALSE    
+## # … with 543 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -144,11 +189,11 @@ rle(s1t1)
 
 ```
 ##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [13] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-## [25] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
-## [37] FALSE FALSE FALSE
+## [13] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+## [37] FALSE FALSE FALSE FALSE FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 15 3 10 3 8
+##   lengths: int [1:5] 14 3 14 3 7
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -181,8 +226,8 @@ detect_runs(tibble(lvec = s1t1))
 ## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   <int>    <int>  <int>
-## 1     1       16     18
-## 2     2       29     31
+## 1     1       15     17
+## 2     2       32     34
 ```
 
 OK, now we're ready to run the function.
@@ -199,21 +244,21 @@ result
 ## # A tibble: 15 x 4
 ##    subject trial subtbl            runstbl         
 ##      <int> <int> <list>            <list>          
-##  1       1     1 <tibble [39 × 1]> <tibble [2 × 3]>
-##  2       1     2 <tibble [38 × 1]> <tibble [2 × 3]>
-##  3       1     3 <tibble [32 × 1]> <tibble [2 × 3]>
+##  1       1     1 <tibble [41 × 1]> <tibble [2 × 3]>
+##  2       1     2 <tibble [37 × 1]> <tibble [2 × 3]>
+##  3       1     3 <tibble [33 × 1]> <tibble [2 × 3]>
 ##  4       2     1 <tibble [36 × 1]> <tibble [2 × 3]>
-##  5       2     2 <tibble [36 × 1]> <tibble [2 × 3]>
-##  6       2     3 <tibble [36 × 1]> <tibble [2 × 3]>
-##  7       3     1 <tibble [38 × 1]> <tibble [2 × 3]>
-##  8       3     2 <tibble [29 × 1]> <tibble [2 × 3]>
-##  9       3     3 <tibble [37 × 1]> <tibble [2 × 3]>
-## 10       4     1 <tibble [33 × 1]> <tibble [2 × 3]>
-## 11       4     2 <tibble [37 × 1]> <tibble [2 × 3]>
+##  5       2     2 <tibble [34 × 1]> <tibble [2 × 3]>
+##  6       2     3 <tibble [37 × 1]> <tibble [2 × 3]>
+##  7       3     1 <tibble [37 × 1]> <tibble [2 × 3]>
+##  8       3     2 <tibble [39 × 1]> <tibble [2 × 3]>
+##  9       3     3 <tibble [33 × 1]> <tibble [2 × 3]>
+## 10       4     1 <tibble [36 × 1]> <tibble [2 × 3]>
+## 11       4     2 <tibble [35 × 1]> <tibble [2 × 3]>
 ## 12       4     3 <tibble [38 × 1]> <tibble [2 × 3]>
-## 13       5     1 <tibble [38 × 1]> <tibble [2 × 3]>
-## 14       5     2 <tibble [35 × 1]> <tibble [2 × 3]>
-## 15       5     3 <tibble [38 × 1]> <tibble [2 × 3]>
+## 13       5     1 <tibble [37 × 1]> <tibble [2 × 3]>
+## 14       5     2 <tibble [41 × 1]> <tibble [2 × 3]>
+## 15       5     3 <tibble [39 × 1]> <tibble [2 × 3]>
 ```
 
 Now we just have to unnest and we're done!
@@ -229,22 +274,22 @@ result %>%
 ## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      <int> <int> <int>    <int>  <int>
-##  1       1     1     1       16     18
-##  2       1     1     2       29     31
-##  3       1     2     1       12     14
-##  4       1     2     2       28     30
-##  5       1     3     1       12     14
-##  6       1     3     2       25     27
-##  7       2     1     1       13     15
-##  8       2     1     2       28     30
-##  9       2     2     1       15     17
-## 10       2     2     2       30     32
+##  1       1     1     1       15     17
+##  2       1     1     2       32     34
+##  3       1     2     1       14     16
+##  4       1     2     2       29     31
+##  5       1     3     1       13     15
+##  6       1     3     2       26     28
+##  7       2     1     1       12     14
+##  8       2     1     2       27     29
+##  9       2     2     1       11     13
+## 10       2     2     2       24     26
 ## # … with 20 more rows
 ```
 
 *October 30, 2019. -DB*
 
-## Highlighting a range of x-values on a plot
+## Highlight a range of x-values on a plot
 
 Sometimes you want to highlight a particular range of values; for example, a particular period of time in a time series.
 

@@ -4,7 +4,7 @@
 
 [R](https://www.r-project.org/) is free, open-source software environment for statistical programming and graphics. It is the engine that you will use to do your analyses.
 
-RStudio is an "Integrated Development Environment" (IDE)---a software package developed by the commercial software company [RStudio](https://www.rstudio.com). RStudio is not necessary to use R, but it is highly recommended because it makes it **much** easier to interact with the R engine and develop reproducible scripts compared to working with R alone. RStudio desktop is a free version of this software. There are other IDEs available that work with R, such as [Jupyter notebooks](https://jupyter.org/) and [emacs (with ESS and org-mode)](https://www.gnu.org/software/emacs/). But the software we recommend is RStudio.
+RStudio is an "Integrated Development Environment" (<a class='glossary' target='_blank' title='Integrated Development Environment: a program that serves as a text editor, file manager, and provides functions to help you read and write code. RStudio is an IDE for R.' href='https://psyteachr.github.io/glossary/i#ide'>IDE</a>)---a software package developed by the commercial software company [RStudio](https://www.rstudio.com). RStudio is not necessary to use R, but it is highly recommended because it makes it **much** easier to interact with the R engine and develop reproducible scripts compared to working with R alone. RStudio desktop is a free version of this software. There are other IDEs available that work with R, such as [Jupyter notebooks](https://jupyter.org/) and [emacs (with ESS and org-mode)](https://www.gnu.org/software/emacs/). But the software we recommend is RStudio.
 
 We often refer to the combination of these two pieces of software as R/RStudio.
 

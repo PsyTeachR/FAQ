@@ -38,7 +38,7 @@ xcode-select --install
 
 ## I am unable to install add-on packages from source. {#rtools}
 
-If you are not able to install packages from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.
+If you are not able to install <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.
 
 * If you are a Windows user
 
@@ -66,15 +66,15 @@ You might be asked to install new packages, such as xfun. Just click **`Yes`** t
 
 ![*Install Required Packages*](images/mac04_rmd_install.png)
 
-There will be a lot of red output in the RStudio console, but this is normal. 
+There will be a lot of red output in the RStudio <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a>, but this is normal. 
 
 ![*Installing Packages*](images/mac05_installing.png)
 
-After this, try to make a new R Markdown file and knit the demo file to html. You should be all set now.
+After this, try to make a new <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> file and <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> the demo file to html. You should be all set now.
 
 Thanks to Ashley McCluskey for figuring out where to get the command tools!
 
-*2020 October 1 -LDB*
+*October 1, 2020. -LDB*
 
 ## When I start RStudio, I get the error "Fatal error: unable to initialize the JIT"
 
