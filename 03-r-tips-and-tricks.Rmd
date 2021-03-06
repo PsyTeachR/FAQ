@@ -35,7 +35,7 @@ Copying and pasting image from R to Word usually results in images that have ver
 
 If you are using {ggplot2} to make plots, or {cowplot} to make multi-panel figures, you can save the plot using `ggsave()`. First, make the plot.
 
-```{r}
+```{r, fig.cap="Original Plot"}
 ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
   facet_wrap(~color, ncol = 4, labeller = label_both) +
   geom_point(alpha = 0.5) +

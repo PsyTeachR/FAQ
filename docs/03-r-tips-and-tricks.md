@@ -47,8 +47,8 @@ ggplot(diamonds, aes(x = carat, y = price, colour = cut)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-r-tips-and-tricks_files/figure-html/unnamed-chunk-1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1)**CAPTION THIS FIGURE!!**</p>
+<img src="03-r-tips-and-tricks_files/figure-html/unnamed-chunk-1-1.png" alt="Original Plot" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Original Plot</p>
 </div>
 
 By default, `ggsave()` will save the last plot you made. If you saved the plot to an object, you can also set the `plot` argument to that. Set the filename with .png or .pdf at the end to get the best-quality images. Set the width and height in inches. You might need some trial and error before you're happy with the outcome. You can change the image size and/or the `base_size` in the theme to make the fonts larger or smaller. The image resolution (`dpi`) defaults to 300, and this works well for most purposes, but you can set it to another value if a journal requires figures to be in a specific DPI.
@@ -124,20 +124,19 @@ Let's say you want to find the start and stop frames where `Z` appears in `stimu
 
 
 ```
-##  [1] "c" "c" "a" "a" "a" "a" "d" "d" "d" "d" "b" "b" "b" "b" "Z" "Z" "Z" "a" "a"
-## [20] "a" "a" "c" "c" "c" "c" "b" "b" "b" "d" "d" "d" "Z" "Z" "Z" "d" "d" "d" "c"
-## [39] "c" "c" "c"
+##  [1] "b" "b" "d" "d" "a" "a" "a" "a" "c" "c" "c" "Z" "Z" "Z" "b" "b" "b" "a" "a"
+## [20] "a" "a" "c" "c" "c" "d" "d" "d" "Z" "Z" "Z" "d" "d" "d" "d" "a" "a" "a"
 ```
 
-So here you can see that the first run of Zs is from frame 15 to 17, 34 and the second is from 32 to 34. We want to write a function that processes the data for each trial and results in a table like this:
+So here you can see that the first run of Zs is from frame 12 to 14, 30 and the second is from 28 to 30. We want to write a function that processes the data for each trial and results in a table like this:
 
 
 ```
 ## # A tibble: 2 x 5
 ##   subject trial   run start_frame end_frame
 ##     <dbl> <dbl> <int>       <int>     <int>
-## 1       1     1     1          15        17
-## 2       1     1     2          32        34
+## 1       1     1     1          12        14
+## 2       1     1     2          28        30
 ```
 
 The first thing to do is to add a logical vector to your tibble whose value is `TRUE` when the target value (e.g., `Z`) is present in the sequence, false otherwise.
@@ -151,20 +150,20 @@ runsdata_tgt
 ```
 
 ```
-## # A tibble: 553 x 4
+## # A tibble: 534 x 4
 ##    subject trial stimulus is_target
 ##      <int> <int> <chr>    <lgl>    
-##  1       1     1 c        FALSE    
-##  2       1     1 c        FALSE    
-##  3       1     1 a        FALSE    
-##  4       1     1 a        FALSE    
+##  1       1     1 b        FALSE    
+##  2       1     1 b        FALSE    
+##  3       1     1 d        FALSE    
+##  4       1     1 d        FALSE    
 ##  5       1     1 a        FALSE    
 ##  6       1     1 a        FALSE    
-##  7       1     1 d        FALSE    
-##  8       1     1 d        FALSE    
-##  9       1     1 d        FALSE    
-## 10       1     1 d        FALSE    
-## # … with 543 more rows
+##  7       1     1 a        FALSE    
+##  8       1     1 a        FALSE    
+##  9       1     1 c        FALSE    
+## 10       1     1 c        FALSE    
+## # … with 524 more rows
 ```
 
 We want to iterate over subjects and trials. We'll start by creating a tibble with columns `is_target` nested into a column called `subtbl`.
@@ -188,12 +187,12 @@ rle(s1t1)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [13] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
-## [37] FALSE FALSE FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+## [13]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+## [37] FALSE
 ## Run Length Encoding
-##   lengths: int [1:5] 14 3 14 3 7
+##   lengths: int [1:5] 11 3 13 3 7
 ##   values : logi [1:5] FALSE TRUE FALSE TRUE FALSE
 ```
 
@@ -226,8 +225,8 @@ detect_runs(tibble(lvec = s1t1))
 ## # A tibble: 2 x 3
 ##     run start_fr end_fr
 ##   <int>    <int>  <int>
-## 1     1       15     17
-## 2     2       32     34
+## 1     1       12     14
+## 2     2       28     30
 ```
 
 OK, now we're ready to run the function.
@@ -244,21 +243,21 @@ result
 ## # A tibble: 15 x 4
 ##    subject trial subtbl            runstbl         
 ##      <int> <int> <list>            <list>          
-##  1       1     1 <tibble [41 × 1]> <tibble [2 × 3]>
-##  2       1     2 <tibble [37 × 1]> <tibble [2 × 3]>
-##  3       1     3 <tibble [33 × 1]> <tibble [2 × 3]>
-##  4       2     1 <tibble [36 × 1]> <tibble [2 × 3]>
-##  5       2     2 <tibble [34 × 1]> <tibble [2 × 3]>
-##  6       2     3 <tibble [37 × 1]> <tibble [2 × 3]>
-##  7       3     1 <tibble [37 × 1]> <tibble [2 × 3]>
-##  8       3     2 <tibble [39 × 1]> <tibble [2 × 3]>
-##  9       3     3 <tibble [33 × 1]> <tibble [2 × 3]>
-## 10       4     1 <tibble [36 × 1]> <tibble [2 × 3]>
-## 11       4     2 <tibble [35 × 1]> <tibble [2 × 3]>
-## 12       4     3 <tibble [38 × 1]> <tibble [2 × 3]>
-## 13       5     1 <tibble [37 × 1]> <tibble [2 × 3]>
-## 14       5     2 <tibble [41 × 1]> <tibble [2 × 3]>
-## 15       5     3 <tibble [39 × 1]> <tibble [2 × 3]>
+##  1       1     1 <tibble [37 × 1]> <tibble [2 × 3]>
+##  2       1     2 <tibble [35 × 1]> <tibble [2 × 3]>
+##  3       1     3 <tibble [39 × 1]> <tibble [2 × 3]>
+##  4       2     1 <tibble [40 × 1]> <tibble [2 × 3]>
+##  5       2     2 <tibble [32 × 1]> <tibble [2 × 3]>
+##  6       2     3 <tibble [34 × 1]> <tibble [2 × 3]>
+##  7       3     1 <tibble [36 × 1]> <tibble [2 × 3]>
+##  8       3     2 <tibble [38 × 1]> <tibble [2 × 3]>
+##  9       3     3 <tibble [34 × 1]> <tibble [2 × 3]>
+## 10       4     1 <tibble [34 × 1]> <tibble [2 × 3]>
+## 11       4     2 <tibble [38 × 1]> <tibble [2 × 3]>
+## 12       4     3 <tibble [37 × 1]> <tibble [2 × 3]>
+## 13       5     1 <tibble [30 × 1]> <tibble [2 × 3]>
+## 14       5     2 <tibble [37 × 1]> <tibble [2 × 3]>
+## 15       5     3 <tibble [33 × 1]> <tibble [2 × 3]>
 ```
 
 Now we just have to unnest and we're done!
@@ -274,16 +273,16 @@ result %>%
 ## # A tibble: 30 x 5
 ##    subject trial   run start_fr end_fr
 ##      <int> <int> <int>    <int>  <int>
-##  1       1     1     1       15     17
-##  2       1     1     2       32     34
-##  3       1     2     1       14     16
-##  4       1     2     2       29     31
-##  5       1     3     1       13     15
-##  6       1     3     2       26     28
-##  7       2     1     1       12     14
-##  8       2     1     2       27     29
-##  9       2     2     1       11     13
-## 10       2     2     2       24     26
+##  1       1     1     1       12     14
+##  2       1     1     2       28     30
+##  3       1     2     1       13     15
+##  4       1     2     2       26     28
+##  5       1     3     1       14     16
+##  6       1     3     2       31     33
+##  7       2     1     1       13     15
+##  8       2     1     2       31     33
+##  9       2     2     1       12     14
+## 10       2     2     2       25     27
 ## # … with 20 more rows
 ```
 
