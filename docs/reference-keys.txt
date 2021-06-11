@@ -1,6 +1,7 @@
 fig:unnamed-chunk-1
 fig:unnamed-chunk-3
 fig:plot
+tab:dog-scale
 installingupdating-r-and-rstudio
 what-is-r-and-rstudio-and-how-do-i-get-them
 local
@@ -23,6 +24,8 @@ save-plots-as-images
 import-data-from-multiple-files
 detect-runs-in-a-sequence
 highlight-a-range-of-x-values-on-a-plot
+wrangling-questionnaire-data
+how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire
 microsoft-teams
 pinning-channels
 what-is-the-best-way-to-share-r-code-on-microsoft-teams

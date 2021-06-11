@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topic 2 Troubleshooting R and RStudio | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</title>
   <meta name="description" content="Frequently Asked Questions." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Topic 2 Troubleshooting R and RStudio | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Team #PsyTeachR" />
 
 
-<meta name="date" content="2021-03-06" />
+<meta name="date" content="2021-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="installingupdating-r-and-rstudio.html"/>
 <link rel="next" href="r-tips-and-tricks.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,29 +50,30 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +82,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,7 +117,9 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/webex.css" type="text/css" />
 <link rel="stylesheet" href="include/style.css" type="text/css" />
 </head>
 
@@ -135,23 +137,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a></li>
-<li class="chapter" data-level="1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Installing/Updating R and RStudio</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#what-is-r-and-rstudio-and-how-do-i-get-them"><i class="fa fa-check"></i><b>1.1</b> What is R and RStudio, and how do I get them?</a>
-<ul>
+<li class="chapter" data-level="1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Installing/Updating R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#what-is-r-and-rstudio-and-how-do-i-get-them"><i class="fa fa-check"></i><b>1.1</b> What is R and RStudio, and how do I get them?</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#local"><i class="fa fa-check"></i><b>1.1.1</b> Installing R and RStudio</a></li>
 <li class="chapter" data-level="1.1.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#server"><i class="fa fa-check"></i><b>1.1.2</b> Using the Department’s RStudio Server</a></li>
 <li class="chapter" data-level="1.1.3" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#vdesk"><i class="fa fa-check"></i><b>1.1.3</b> Using Virtual Desktop</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#how-do-i-update-r-rstudio-and-add-on-packages-to-the-latest-versions"><i class="fa fa-check"></i><b>1.2</b> How do I update R, RStudio, and add-on packages to the latest versions?</a></li>
-<li class="chapter" data-level="1.3" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#serverfiles"><i class="fa fa-check"></i><b>1.3</b> How do I access files when using the RStudio Server?</a>
-<ul>
+<li class="chapter" data-level="1.3" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#serverfiles"><i class="fa fa-check"></i><b>1.3</b> How do I access files when using the RStudio Server?</a><ul>
 <li class="chapter" data-level="1.3.1" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#loading-data-into-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.1</b> Loading data into the RStudio Server</a></li>
 <li class="chapter" data-level="1.3.2" data-path="installingupdating-r-and-rstudio.html"><a href="installingupdating-r-and-rstudio.html#downloading-files-from-the-rstudio-server"><i class="fa fa-check"></i><b>1.3.2</b> Downloading files from the RStudio Server</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Troubleshooting R and RStudio</a>
-<ul>
+<li class="chapter" data-level="2" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Troubleshooting R and RStudio</a><ul>
 <li class="chapter" data-level="2.1" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit."><i class="fa fa-check"></i><b>2.1</b> Every time I knit, I get a message that packages are missing, and it won’t knit.</a></li>
 <li class="chapter" data-level="2.2" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#why-cant-i-compile-packages-from-source"><i class="fa fa-check"></i><b>2.2</b> Why can’t I compile packages from source?</a></li>
 <li class="chapter" data-level="2.3" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#xcrun"><i class="fa fa-check"></i><b>2.3</b> When I try to compile, I get the following error message:</a></li>
@@ -159,28 +157,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#catalina"><i class="fa fa-check"></i><b>2.5</b> RStudio keeps crashing with MacOS 10.15 Catalina</a></li>
 <li class="chapter" data-level="2.6" data-path="troubleshooting-r-and-rstudio.html"><a href="troubleshooting-r-and-rstudio.html#when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit"><i class="fa fa-check"></i><b>2.6</b> When I start RStudio, I get the error “Fatal error: unable to initialize the JIT”</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html"><i class="fa fa-check"></i><b>3</b> R Tips and Tricks</a>
-<ul>
+<li class="chapter" data-level="3" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html"><i class="fa fa-check"></i><b>3</b> R Tips and Tricks</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#show-r-code-in-word"><i class="fa fa-check"></i><b>3.1</b> Show R code in Word</a></li>
 <li class="chapter" data-level="3.2" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#save-plots-as-images"><i class="fa fa-check"></i><b>3.2</b> Save plots as images</a></li>
 <li class="chapter" data-level="3.3" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#import-data-from-multiple-files"><i class="fa fa-check"></i><b>3.3</b> Import data from multiple files</a></li>
 <li class="chapter" data-level="3.4" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#detect-runs-in-a-sequence"><i class="fa fa-check"></i><b>3.4</b> Detect “runs” in a sequence</a></li>
 <li class="chapter" data-level="3.5" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#highlight-a-range-of-x-values-on-a-plot"><i class="fa fa-check"></i><b>3.5</b> Highlight a range of x-values on a plot</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="microsoft-teams.html"><a href="microsoft-teams.html"><i class="fa fa-check"></i><b>4</b> Microsoft Teams</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#pinning-channels"><i class="fa fa-check"></i><b>4.1</b> Pinning channels</a></li>
-<li class="chapter" data-level="4.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#what-is-the-best-way-to-share-r-code-on-microsoft-teams"><i class="fa fa-check"></i><b>4.2</b> What is the best way to share R code on Microsoft Teams?</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#quick-and-easy-method"><i class="fa fa-check"></i><b>4.2.1</b> Quick and easy method</a></li>
-<li class="chapter" data-level="4.2.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#more-flexible-method"><i class="fa fa-check"></i><b>4.2.2</b> More flexible method</a></li>
+<li class="chapter" data-level="4" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html"><i class="fa fa-check"></i><b>4</b> Wrangling Questionnaire Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html#how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire"><i class="fa fa-check"></i><b>4.1</b> How do I reverse score a subset of items on my questionnaire?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="microsoft-teams.html"><a href="microsoft-teams.html"><i class="fa fa-check"></i><b>5</b> Microsoft Teams</a><ul>
+<li class="chapter" data-level="5.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#pinning-channels"><i class="fa fa-check"></i><b>5.1</b> Pinning channels</a></li>
+<li class="chapter" data-level="5.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#what-is-the-best-way-to-share-r-code-on-microsoft-teams"><i class="fa fa-check"></i><b>5.2</b> What is the best way to share R code on Microsoft Teams?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#quick-and-easy-method"><i class="fa fa-check"></i><b>5.2.1</b> Quick and easy method</a></li>
+<li class="chapter" data-level="5.2.2" data-path="microsoft-teams.html"><a href="microsoft-teams.html#more-flexible-method"><i class="fa fa-check"></i><b>5.2.2</b> More flexible method</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="using-zoom.html"><a href="using-zoom.html"><i class="fa fa-check"></i><b>5</b> Using Zoom</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="using-zoom.html"><a href="using-zoom.html#how-do-i-set-up-zoom-for-my-classes"><i class="fa fa-check"></i><b>5.1</b> How do I set up Zoom for my classes?</a></li>
-<li class="chapter" data-level="5.2" data-path="using-zoom.html"><a href="using-zoom.html#update"><i class="fa fa-check"></i><b>5.2</b> How do I update Zoom?</a></li>
-<li class="chapter" data-level="5.3" data-path="using-zoom.html"><a href="using-zoom.html#zemail"><i class="fa fa-check"></i><b>5.3</b> How do I sign in with my Zoom email address?</a></li>
+<li class="chapter" data-level="6" data-path="using-zoom.html"><a href="using-zoom.html"><i class="fa fa-check"></i><b>6</b> Using Zoom</a><ul>
+<li class="chapter" data-level="6.1" data-path="using-zoom.html"><a href="using-zoom.html#how-do-i-set-up-zoom-for-my-classes"><i class="fa fa-check"></i><b>6.1</b> How do I set up Zoom for my classes?</a></li>
+<li class="chapter" data-level="6.2" data-path="using-zoom.html"><a href="using-zoom.html#update"><i class="fa fa-check"></i><b>6.2</b> How do I update Zoom?</a></li>
+<li class="chapter" data-level="6.3" data-path="using-zoom.html"><a href="using-zoom.html#zemail"><i class="fa fa-check"></i><b>6.3</b> How do I sign in with my Zoom email address?</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
@@ -206,22 +203,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="troubleshooting-r-and-rstudio" class="section level1" number="2">
+<div id="troubleshooting-r-and-rstudio" class="section level1">
 <h1><span class="header-section-number">Topic 2</span> Troubleshooting R and RStudio</h1>
-<div id="every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit." class="section level2" number="2.1">
+<div id="every-time-i-knit-i-get-a-message-that-packages-are-missing-and-it-wont-knit." class="section level2">
 <h2><span class="header-section-number">2.1</span> Every time I knit, I get a message that packages are missing, and it won’t knit.</h2>
 <p>Probably what’s happening is that it tries but fails to install the necessary packages. Mark down the names of the packages that it says you need and try to install them from the command line. For example, if it says you need <strong><code>digest</code></strong> then type this into the console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="troubleshooting-r-and-rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;digest&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;digest&quot;</span>)</a></code></pre></div>
 <p>and see what happens. Note any error messages. Check <a href="add-on-packages.html">the section on packages</a> for help with specific error messages.</p>
 <p><em>October 24, 2019. -DB</em></p>
 </div>
-<div id="why-cant-i-compile-packages-from-source" class="section level2" number="2.2">
+<div id="why-cant-i-compile-packages-from-source" class="section level2">
 <h2><span class="header-section-number">2.2</span> Why can’t I compile packages from source?</h2>
 <p>If you are a Windows user, you are missing RTools. See <a href="installing-r-and-rstudio.html#rtools">this FAQ</a></p>
 <p>If you are a Mac user, <a href="troubleshooting-r-and-rstudio.html#xcrun">there might be something wrong with your installation</a>.</p>
 <p><em>October 24, 2019. -DB</em></p>
 </div>
-<div id="xcrun" class="section level2" number="2.3">
+<div id="xcrun" class="section level2">
 <h2><span class="header-section-number">2.3</span> When I try to compile, I get the following error message:</h2>
 <p><strong><code>xcrun: error: invalid active developer path</code></strong></p>
 <p>Solution:</p>
@@ -232,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>xcode-select --install</code></pre>
 <p><em>October 24, 2019. -DB</em></p>
 </div>
-<div id="rtools" class="section level2" number="2.4">
+<div id="rtools" class="section level2">
 <h2><span class="header-section-number">2.4</span> I am unable to install add-on packages from source.</h2>
 <p>If you are not able to install <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> from source, you are missing the build tools that are used to compile source code into files that the operating system can execute.</p>
 <ul>
@@ -242,40 +239,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="catalina" class="section level2" number="2.5">
+<div id="catalina" class="section level2">
 <h2><span class="header-section-number">2.5</span> RStudio keeps crashing with MacOS 10.15 Catalina</h2>
 <p>When you first open RStudio, you might get a warning that says:</p>
 <div class="figure">
-<img src="images/mac01_ct.png" alt="" />
+<img src="images/mac01_ct.png" alt="The “git” command requires the command line developer tools. Would you like to install the tools now?" />
 <p class="caption"><em>The “git” command requires the command line developer tools. Would you like to install the tools now?</em></p>
 </div>
 <p>Click <strong><code>Install</code></strong> just in case Apple sorts out their problem so you get the most up to date version. But you’re likely to get this error message:</p>
 <div class="figure">
-<img src="images/mac02_no_ct.png" alt="" />
+<img src="images/mac02_no_ct.png" alt="Can’t install the software because it is not currently available from the Software Update server." />
 <p class="caption"><em>Can’t install the software because it is not currently available from the Software Update server.</em></p>
 </div>
 <p>Go to <a href="https://developer.apple.com/download/more/">Apple Developer</a>. You might need to sign in with your Apple ID.</p>
 <p>Choose Command Line Tools for Xcode 12 (not the beta) at <a href="https://developer.apple.com/download/more/" class="uri">https://developer.apple.com/download/more/</a>. You don’t need to install Xcode 12. Download the DMG, open it, and follow the instructions to install it. You will need your computer password.</p>
 <div class="figure">
-<img src="images/mac03_devtools.png" alt="" />
+<img src="images/mac03_devtools.png" alt="More Downloads for Apple Developers - install Command Line Tools for Xcode 12" />
 <p class="caption"><em>More Downloads for Apple Developers - install Command Line Tools for Xcode 12</em></p>
 </div>
 <p>After you install the command line tools, you can delete the disk image (.dmg file). Quit RStudio if it is open and reopen it.</p>
 <p>You might be asked to install new packages, such as xfun. Just click <strong><code>Yes</code></strong> to install them. If you are not asked to install packages when you open RStudio, or after you do install them, try to open a new R Markdown file. This will probably prompt more installations.</p>
 <div class="figure">
-<img src="images/mac04_rmd_install.png" alt="" />
+<img src="images/mac04_rmd_install.png" alt="Install Required Packages" />
 <p class="caption"><em>Install Required Packages</em></p>
 </div>
 <p>There will be a lot of red output in the RStudio <a class='glossary' target='_blank' title='The pane in RStudio where you can type in commands and view output messages.' href='https://psyteachr.github.io/glossary/c#console'>console</a>, but this is normal.</p>
 <div class="figure">
-<img src="images/mac05_installing.png" alt="" />
+<img src="images/mac05_installing.png" alt="Installing Packages" />
 <p class="caption"><em>Installing Packages</em></p>
 </div>
 <p>After this, try to make a new <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> file and <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> the demo file to html. You should be all set now.</p>
 <p>Thanks to Ashley McCluskey for figuring out where to get the command tools!</p>
 <p><em>October 1, 2020. -LDB</em></p>
 </div>
-<div id="when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit" class="section level2" number="2.6">
+<div id="when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit" class="section level2">
 <h2><span class="header-section-number">2.6</span> When I start RStudio, I get the error “Fatal error: unable to initialize the JIT”</h2>
 <p>This error crops up sometimes when using R on campus computers. This is due to a bug in your campus profile. Please speak to the <a href="https://www.gla.ac.uk/myglasgow/it/helpdesk/" target="_blank">IT Helpdesk</a>.</p>
 <p><em>November 6, 2019. -DB</em></p>
@@ -287,16 +284,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <script>
 
-/* update total correct if #total_correct exists */
+/* update total correct if #webex-total_correct exists */
 update_total_correct = function() {
-  if (t = document.getElementById("total_correct")) {
+  if (t = document.getElementById("webex-total_correct")) {
     t.innerHTML =
-      document.getElementsByClassName("correct").length + " of " +
-      document.getElementsByClassName("solveme").length + " correct";
+      document.getElementsByClassName("webex-correct").length + " of " +
+      document.getElementsByClassName("webex-solveme").length + " correct";
   }
 }
 
-/* solution button toggling function */
+/* webex-solution button toggling function */
 b_func = function() {
   var cl = this.parentElement.classList;
   if (cl.contains('open')) {
@@ -315,23 +312,23 @@ solveme_func = function(e) {
     my_answer = my_answer.toLowerCase();
   }
   if (cl.contains("nospaces")) {
-    my_answer = my_answer.replace(/ /g, "");
+    my_answer = my_answer.replace(/ /g, "")
   }
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
-    cl.add("correct");
+    cl.add("webex-correct");
   } else {
-    cl.remove("correct");
+    cl.remove("webex-correct");
   }
 
   // match numeric answers within a specified tolerance
-  if(this.dataset.tol){
+  if(this.dataset.tol > 0){
     var tol = JSON.parse(this.dataset.tol);  
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
-      cl.add("correct");
+      cl.add("webex-correct");
     } else {
-      cl.remove("correct");
+      cl.remove("webex-correct");
     }  
   }
 
@@ -339,7 +336,7 @@ solveme_func = function(e) {
   if (cl.contains("regex")){
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
-      cl.add("correct");
+      cl.add("webex-correct");
     }  
   }
   
@@ -351,13 +348,13 @@ window.onload = function() {
   var buttons = document.getElementsByTagName("button");
 
   for (var i = 0; i < buttons.length; i++) {
-    if (buttons[i].parentElement.classList.contains('solution')) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
       buttons[i].onclick = b_func;
     }
   }
   
-  /* set up solveme inputs */
-  var solveme = document.getElementsByClassName("solveme");
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
 
   for (var i = 0; i < solveme.length; i++) {
     /* make sure input boxes don't auto-anything */
@@ -416,6 +413,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
 "google": false
 },

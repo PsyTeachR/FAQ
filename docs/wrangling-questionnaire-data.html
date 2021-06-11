@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 1 Installing/Updating R and RStudio | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</title>
+  <title>Topic 4 Wrangling Questionnaire Data | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students</title>
   <meta name="description" content="Frequently Asked Questions." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 1 Installing/Updating R and RStudio | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
+  <meta property="og:title" content="Topic 4 Wrangling Questionnaire Data | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 1 Installing/Updating R and RStudio | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
+  <meta name="twitter:title" content="Topic 4 Wrangling Questionnaire Data | Frequently Asked Questions (FAQ) from University of Glasgow Psychology Students" />
   
   <meta name="twitter:description" content="Frequently Asked Questions." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="troubleshooting-r-and-rstudio.html"/>
+<link rel="prev" href="r-tips-and-tricks.html"/>
+<link rel="next" href="microsoft-teams.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -203,106 +203,186 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="installingupdating-r-and-rstudio" class="section level1">
-<h1><span class="header-section-number">Topic 1</span> Installing/Updating R and RStudio</h1>
-<div id="what-is-r-and-rstudio-and-how-do-i-get-them" class="section level2">
-<h2><span class="header-section-number">1.1</span> What is R and RStudio, and how do I get them?</h2>
-<p><a href="https://www.r-project.org/">R</a> is free, open-source software environment for statistical programming and graphics. It is the engine that you will use to do your analyses.</p>
-<p>RStudio is an “Integrated Development Environment” (<a class='glossary' target='_blank' title='Integrated Development Environment: a program that serves as a text editor, file manager, and provides functions to help you read and write code. RStudio is an IDE for R.' href='https://psyteachr.github.io/glossary/i#ide'>IDE</a>)—a software package developed by the commercial software company <a href="https://www.rstudio.com">RStudio</a>. RStudio is not necessary to use R, but it is highly recommended because it makes it <strong>much</strong> easier to interact with the R engine and develop reproducible scripts compared to working with R alone. RStudio desktop is a free version of this software. There are other IDEs available that work with R, such as <a href="https://jupyter.org/">Jupyter notebooks</a> and <a href="https://www.gnu.org/software/emacs/">emacs (with ESS and org-mode)</a>. But the software we recommend is RStudio.</p>
-<p>We often refer to the combination of these two pieces of software as R/RStudio.</p>
-<p><strong>You have the following options for getting access to R/RStudio:</strong></p>
-<ul>
-<li><p><a href="installingupdating-r-and-rstudio.html#local">Install it locally</a>. Both pieces of software are free. The advantage is that you can use them without an internet connection, and you have easy access to the files stored on your hard drive. This is the best long-term solution but installation can sometimes be a hassle (<a href="troubleshooting-r-and-rstudio.html#catalina">particularly for Mac users</a>).</p></li>
-<li><p><a href="installingupdating-r-and-rstudio.html#server">Use the department’s RStudio Server</a>. This is a great option as it doesn’t require installing anything on your own system—all you need to do is open a web browser and point it to the right address. It has R, RStudio, and all the add-on packages you might need preinstalled. The disadvantage is that it is requires a stable internet connection, and access to local files can be somewhat tricky. It is great for people new to R/RStudio. If you are a Psychology student at the University of Glasgow, you have free access to this server. Please contact your instructor for the link.</p></li>
-<li><p><a href="installingupdating-r-and-rstudio.html#vdesk">Access R/RStudio through Windows Virtual Desktop</a>. Works ok but performance can be sluggish, especially with low-bandwidth network connections. Not recommended unless options 1 and 2 are not viable.</p></li>
-<li><p><a href="https://rstudio.cloud/">Use RStudio Cloud</a>. This is a free cloud service that works well as a temporary option, but without the paid version your options will be limited. Not recommended except as a final fallback option.</p></li>
-</ul>
-<div id="local" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Installing R and RStudio</h3>
-<p>This is your best long-term option and is really not too difficult, but if you’re new to R/RStudio or not confident with computers, we don’t recommend this.</p>
-<p>As far as we are aware at time of writing, R and RStudio do not work well on Chromebooks, Android Tablets or iPads. If this is the only device that you have access to you can try the <a href="installingupdating-r-and-rstudio.html#server">RStudio Server</a>. We really recommend a laptop or desktop computer as the ideal machine for your data analysis work.</p>
-<p>Michael Galarnyk has very good tutorials for installing R and RStudio on a Mac and a PC.</p>
-<p><strong>The basic thing to remember is install R first and only then install RStudio.</strong></p>
-<p><a href="https://medium.com/@GalarnykMichael/install-r-and-rstudio-on-mac-e911606ce4f4">For installing on a Mac</a></p>
-<p><a href="https://medium.com/@GalarnykMichael/install-r-and-rstudio-on-windows-5f503f708027">For installing on a PC</a></p>
+<div id="wrangling-questionnaire-data" class="section level1">
+<h1><span class="header-section-number">Topic 4</span> Wrangling Questionnaire Data</h1>
+<div id="how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire" class="section level2">
+<h2><span class="header-section-number">4.1</span> How do I reverse score a subset of items on my questionnaire?</h2>
+<p>We will be working with a made-up scale with six items which measures how much respondents appreciate dogs. People respond to each of the six items on a 5 point likert scale, where 1=strongly disagree, 2=somewhat disagree, 3=neutral, 4=somewhat agree, 5=strongly agree.</p>
+<table>
+<caption><span id="tab:dog-scale">Table 4.1: </span>The Dog Appreciation Scale</caption>
+<thead>
+<tr class="header">
+<th align="left">item</th>
+<th align="left">reverse_score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">I like dogs</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Dogs are fun</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Cats are better than dogs</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Dogs are helpful</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Dogs are too noisy</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Dogs are too much responsibility</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<p>Here is some made-up questionnaire data with 6 items and 3 subjects, contained in the tibble named <code>das</code>. We want to reverse score the items “Cats are better than dogs”, “Dogs are too noisy”, and “Dogs are too much responsibility” before summing up the total for each subject.</p>
+<pre><code>## # A tibble: 18 x 3
+##    subj_id item                             score
+##    &lt;chr&gt;   &lt;chr&gt;                            &lt;dbl&gt;
+##  1 S01     I like dogs                          5
+##  2 S01     Dogs are fun                         5
+##  3 S01     Cats are better than dogs            1
+##  4 S01     Dogs are helpful                     4
+##  5 S01     Dogs are too noisy                   2
+##  6 S01     Dogs are too much responsibility     2
+##  7 S02     I like dogs                          3
+##  8 S02     Dogs are fun                         4
+##  9 S02     Cats are better than dogs            2
+## 10 S02     Dogs are helpful                     4
+## 11 S02     Dogs are too noisy                   3
+## 12 S02     Dogs are too much responsibility     5
+## 13 S03     I like dogs                          1
+## 14 S03     Dogs are fun                         3
+## 15 S03     Cats are better than dogs            5
+## 16 S02     Dogs are helpful                     2
+## 17 S02     Dogs are too noisy                   4
+## 18 S02     Dogs are too much responsibility     5</code></pre>
+<div class="webex-solution">
+<button>
+show me the code to create the table ‘das’
+</button>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
+<a class="sourceLine" id="cb25-2" title="2"></a>
+<a class="sourceLine" id="cb25-3" title="3">das &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb25-4" title="4">  <span class="op">~</span>subj_id, <span class="op">~</span>item, <span class="op">~</span>score,</a>
+<a class="sourceLine" id="cb25-5" title="5">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb25-6" title="6">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb25-7" title="7">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb25-8" title="8">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb25-9" title="9">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb25-10" title="10">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb25-11" title="11">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb25-12" title="12">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb25-13" title="13">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb25-14" title="14">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb25-15" title="15">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb25-16" title="16">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb25-17" title="17">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb25-18" title="18">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb25-19" title="19">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb25-20" title="20">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb25-21" title="21">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb25-22" title="22">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>)</a></code></pre></div>
 </div>
-<div id="server" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> Using the Department’s RStudio Server</h3>
-<p>The RStudio Server is accessed through a browser, and operates nearly identically to R/RStudio running locally despite the fact that it is actually running remotely. However, there are two differences: (1) it can sometimes be slow, depending on the speed of your network connection as well as the load on the server; and (2) you cannot directly access any local files on your hard drive; you must upload them to the server to work with them.</p>
-<p>Open a browser and enter the URL of the University of Glasgow Psychology RStudio Server. You will need to get the URL from your class Moodle web page or from your instructor. When you enter the URL you will see:</p>
-<div class="figure">
-<img src="images/rstudio-login.jpg" alt="Image of the RStudio login" />
-<p class="caption"><em>Image of the RStudio login</em></p>
+<p>First, we assume that you have your data in long format, like the table above. If you don’t, then please see the materials on reshaping from wide to long, such as <a href="https://psyteachr.github.io/msc-data-skills/tidyr.html#pivot_longer">this section from the MSC book</a>.</p>
+<p>We are going to use a programming trick that we’ll call “the N-plus-one-minus-X trick” to score the items that need to be reverse coded. This trick will work whenever you have a scale with N scale points that goes in integer steps from 1 to N (e.g., 1, 2, 3, 4, 5). You subtract Xs (each observed score) from N+1 to get the reversed value.</p>
+<p><em>newscore = (number_of_scale_points + 1) - oldscore</em></p>
+<p>So if you have a 5 point scale, it is:</p>
+<p><em>newscore = 6 - oldscore</em></p>
+<p>and a 7 point scale is</p>
+<p><em>newscore = 8 - oldscore</em>.</p>
+<p>You can see this works using the following code:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">oldscores &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb26-2" title="2">newscores &lt;-<span class="st"> </span><span class="dv">6</span> <span class="op">-</span><span class="st"> </span>oldscores</a>
+<a class="sourceLine" id="cb26-3" title="3"></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="kw">rbind</span>(oldscores, newscores)</a></code></pre></div>
+<pre><code>##           [,1] [,2] [,3] [,4] [,5]
+## oldscores    1    2    3    4    5
+## newscores    5    4    3    2    1</code></pre>
+<p><strong>Note: If your scale goes from 0 to N, then use N - X rather than (N + 1) - X to reverse score.</strong></p>
+<p>So we can see already that we need something like:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score)</a></code></pre></div>
+<p>but <em>only</em> for those items that need to be reverse scored. This is where <code>if_else()</code> comes in. Or, better said, where <code>if_else()</code> comes <code>%in%</code> (if you can pardon a bit of R humor).</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
+<a class="sourceLine" id="cb29-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
+<a class="sourceLine" id="cb29-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibilitiy&quot;</span>),</a>
+<a class="sourceLine" id="cb29-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
+<a class="sourceLine" id="cb29-6" title="6">                            score))</a></code></pre></div>
+<p>The code above adds a new variable <code>newscore</code> which is the result of the <code>if_else()</code> command and stores the resulting table in <code>das_coded</code>. This command has the following syntax:</p>
+<p><code>if_else(condition, value_if_true, value_if_false)</code>.</p>
+<p>So, if the current value of item is found within the vector of options (that’s what the <code>%in%</code> operator does), the first expression evaluates to <code>TRUE</code>, and <code>6-score</code> is returned; if the first expression evaluates to <code>FALSE</code>, then <code>score</code> is returned.</p>
+<p>But whenever you recode or score a variable, you should <em>ALWAYS</em> check that your code is correct, because typos are likely. The best way to do this is to run a little test in the console. You can just print out the data from <code>das_coded</code>, or if you have a lot of data, use <code>distinct()</code> to look at check the distinct values observed in the data.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">das_coded <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
+<pre><code>## # A tibble: 16 x 3
+##    item                             score newscore
+##    &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt;
+##  1 I like dogs                          5        5
+##  2 Dogs are fun                         5        5
+##  3 Cats are better than dogs            1        5
+##  4 Dogs are helpful                     4        4
+##  5 Dogs are too noisy                   2        4
+##  6 Dogs are too much responsibility     2        2
+##  7 I like dogs                          3        3
+##  8 Dogs are fun                         4        4
+##  9 Cats are better than dogs            2        4
+## 10 Dogs are too noisy                   3        3
+## 11 Dogs are too much responsibility     5        5
+## 12 I like dogs                          1        1
+## 13 Dogs are fun                         3        3
+## 14 Cats are better than dogs            5        1
+## 15 Dogs are helpful                     2        2
+## 16 Dogs are too noisy                   4        2</code></pre>
+<p>Here we can see that “Cats are better than dogs” and “Dogs are too noisy” have been successfully reverse scored. We can also see that the items that should be forward scored, e.g., “I like dogs”, are indeed forward scored (the scores don’t change).</p>
+<p>But our reverse scoring of “Dogs are too much responsibility” has failed. Can you see the problem in our code (hint: typo).</p>
+<div class="webex-solution">
+<button>
+no, I can’t see the problem
+</button>
+<p><code>responsibility</code> is mistyped as <code>responsibilitiy</code></p>
 </div>
-<p>At the login screen, enter your GUID and password. The result will be an interactive web page that looks just like what you would see if you had installed R/RStudio locally, except it is running on a departmental server.</p>
-<p>If you have login problems, please connect to the university’s <a href="https://www.gla.ac.uk/myglasgow/it/vpn/">Virtual Private Network (VPN)</a> and try again.
-If you continue to have problems, please post your problem to a help channel on Teams.</p>
-<p>Also, please read the <a href="installingupdating-r-and-rstudio.html#serverfiles">section on working with files on the server</a>.</p>
-</div>
-<div id="vdesk" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> Using Virtual Desktop</h3>
-<p>Virtual Desktop is another browser-based method for getting access to R/RStudio. It will be more laggy than the RStudio Server and also has the same limitation of not being able to see local files, so we don’t recommend it except as a fallback option for R/RStudio if you can’t access the server for some reason. But if you need to use other software it may be your only option.</p>
-<p>When you connect to the Psychology Remote Desktop, it will look like you are working on another computer from your own computer. You will interact with it just like you are working on a standard Windows Desktop, except that it will appear as a web page within your browser. From there, you can access any software that the department has access to and run it “in the cloud.”</p>
-<p>Open your browser and go to <a href="https://rdweb.wvd.microsoft.com/arm/webclient/" class="uri">https://rdweb.wvd.microsoft.com/arm/webclient/</a>. You might need to go through several sign-in screens until you get to this:</p>
-<div class="figure">
-<img src="images/remote-desktop.jpg" alt="image of remote desktop options" />
-<p class="caption"><em>image of remote desktop options</em></p>
-</div>
-<p>Click on “Psy Desktop” and then you might be asked to log in again on the screen below. Use your GUID and password.</p>
-<div class="figure">
-<img src="images/remote-desktop2.jpg" alt="image of yet another login screen" />
-<p class="caption"><em>image of yet another login screen</em></p>
-</div>
-<p>Then you will see what looks like a standard Windows log on screen, and eventually, the desktop. Software can be accessed from the pop-up menu available by clicking on the Windows icon in the bottom left corner of the browser window.</p>
-<p>Launch the software you need. For instance, If you want to use RStudio, click on windows icon in the bottom left corner of the browser window and type <code>rstudio</code> in the search bar that appears. Then you can click on the app to launch it.</p>
-<p><em>October 1, 2020. -HP and DB</em></p>
-</div>
-</div>
-<div id="how-do-i-update-r-rstudio-and-add-on-packages-to-the-latest-versions" class="section level2">
-<h2><span class="header-section-number">1.2</span> How do I update R, RStudio, and add-on packages to the latest versions?</h2>
-<p>We recommend that you update all your data skills software and packages at the start of the academic year. That will mean that you are running the same software as members of staff and fellow students and helps collaborative work.</p>
-<p>Never do this just before an assignment is due, save updating for when you have a bit of time on your hands.</p>
-<p><strong>IMPORTANT update R first, then update R Studio and then update your packages</strong></p>
-<p><a href="https://bootstrappers.umassmed.edu/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html" target="_blank">Nick Hathaway has a set of instructions that work for this</a>. The process takes about 20 minutes</p>
-<p>To update R itself, you will need to use R rather than RStudio.</p>
-<p>The newest version of RStudio has a lovely tool that scans scripts you open for any packages that you don’t have installed so look out for that.</p>
-<p><em>October 1, 2020. -HP and DB</em></p>
-</div>
-<div id="serverfiles" class="section level2">
-<h2><span class="header-section-number">1.3</span> How do I access files when using the RStudio Server?</h2>
-<p>The first thing to note is that the RStudio Server is not a good place to store your data forever. it is not backed up, so make sure that you download any important work regularly and store on OneDrive.</p>
-<p>The undergraduate Level 1 teaching materials has walk-through information about <a href="https://psyteachr.github.io/ug1-practical/programming-basics.html#getting-to-know-r-studio">interacting with the server</a> as well as <a href="https://psyteachr.github.io/ug1-practical/ref1.html#activity-1-upload-data-files-to-the-server">uploading files</a>. Here is a quick reference guide.</p>
-<div id="loading-data-into-the-rstudio-server" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Loading data into the RStudio Server</h3>
-<ol style="list-style-type: decimal">
-<li>Select the Files Tab</li>
-<li>Make a folder for your work (NEVER call it R as that can cause errors)</li>
-<li>Click Upload</li>
-<li>Browse to the file on your computer via Choose File – if you upload a zipped folder, the server will automatically unzip it for you 😊</li>
-</ol>
-<div class="figure">
-<img src="images/upload_files.png" alt="Image of the uploading instructions" />
-<p class="caption"><em>Image of the uploading instructions</em></p>
-</div>
-</div>
-<div id="downloading-files-from-the-rstudio-server" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> Downloading files from the RStudio Server</h3>
-<p>If you just have a single file to download, it’s as easy as just clicking on that file in the Files pane of the RStudio Server.</p>
-<p>If you have multiple files that you want to download:</p>
-<ol style="list-style-type: decimal">
-<li>Select the Files Tab</li>
-<li>Select the folder of file by ticking the box next to it</li>
-<li>Click More</li>
-<li>Click “Export”</li>
-<li>Rename if you need and click download – it will download to your default downloads space (usually on PCs a folder called downloads). If you select a whole folder, it will download as a zipped folder and you will need to unzip it.</li>
-</ol>
-<div class="figure">
-<img src="images/download_files.png" alt="Image of the downloading instructions" />
-<p class="caption"><em>Image of the downloading instructions</em></p>
-</div>
-<p><em>October 1, 2020. -HP and DB</em></p>
+<p>So the correct code is:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
+<a class="sourceLine" id="cb32-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
+<a class="sourceLine" id="cb32-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibility&quot;</span>),</a>
+<a class="sourceLine" id="cb32-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
+<a class="sourceLine" id="cb32-6" title="6">                            score))</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">das_coded <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
+<pre><code>## # A tibble: 16 x 3
+##    item                             score newscore
+##    &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt;
+##  1 I like dogs                          5        5
+##  2 Dogs are fun                         5        5
+##  3 Cats are better than dogs            1        5
+##  4 Dogs are helpful                     4        4
+##  5 Dogs are too noisy                   2        4
+##  6 Dogs are too much responsibility     2        4
+##  7 I like dogs                          3        3
+##  8 Dogs are fun                         4        4
+##  9 Cats are better than dogs            2        4
+## 10 Dogs are too noisy                   3        3
+## 11 Dogs are too much responsibility     5        1
+## 12 I like dogs                          1        1
+## 13 Dogs are fun                         3        3
+## 14 Cats are better than dogs            5        1
+## 15 Dogs are helpful                     2        2
+## 16 Dogs are too noisy                   4        2</code></pre>
+<p>We’ve done it! Now we can proceed to analyze our data further.</p>
 
-</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -415,8 +495,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="troubleshooting-r-and-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-tips-and-tricks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="microsoft-teams.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
