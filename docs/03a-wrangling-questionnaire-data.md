@@ -40,9 +40,9 @@ Here is some made-up questionnaire data with 6 items and 3 subjects, contained i
 ## 13 S03     I like dogs                          1
 ## 14 S03     Dogs are fun                         3
 ## 15 S03     Cats are better than dogs            5
-## 16 S02     Dogs are helpful                     2
-## 17 S02     Dogs are too noisy                   4
-## 18 S02     Dogs are too much responsibility     5
+## 16 S03     Dogs are helpful                     2
+## 17 S03     Dogs are too noisy                   4
+## 18 S03     Dogs are too much responsibility     5
 ```
 
 
@@ -70,9 +70,9 @@ das <- tribble(
   "S03", "I like dogs",                      1,
   "S03", "Dogs are fun",                     3,
   "S03", "Cats are better than dogs",        5,
-  "S02", "Dogs are helpful",                 2,
-  "S02", "Dogs are too noisy",               4,
-  "S02", "Dogs are too much responsibility", 5)
+  "S03", "Dogs are helpful",                 2,
+  "S03", "Dogs are too noisy",               4,
+  "S03", "Dogs are too much responsibility", 5)
 ```
 
 

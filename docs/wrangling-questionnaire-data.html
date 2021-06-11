@@ -262,9 +262,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 13 S03     I like dogs                          1
 ## 14 S03     Dogs are fun                         3
 ## 15 S03     Cats are better than dogs            5
-## 16 S02     Dogs are helpful                     2
-## 17 S02     Dogs are too noisy                   4
-## 18 S02     Dogs are too much responsibility     5</code></pre>
+## 16 S03     Dogs are helpful                     2
+## 17 S03     Dogs are too noisy                   4
+## 18 S03     Dogs are too much responsibility     5</code></pre>
 <div class="webex-solution">
 <button>
 show me the code to create the table ‘das’
@@ -288,9 +288,9 @@ show me the code to create the table ‘das’
 <a class="sourceLine" id="cb25-17" title="17">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">1</span>,</a>
 <a class="sourceLine" id="cb25-18" title="18">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb25-19" title="19">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb25-20" title="20">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb25-21" title="21">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-22" title="22">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb25-20" title="20">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb25-21" title="21">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb25-22" title="22">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>)</a></code></pre></div>
 </div>
 <p>First, we assume that you have your data in long format, like the table above. If you don’t, then please see the materials on reshaping from wide to long, such as <a href="https://psyteachr.github.io/msc-data-skills/tidyr.html#pivot_longer">this section from the MSC book</a>.</p>
 <p>We are going to use a programming trick that we’ll call “the N-plus-one-minus-X trick” to score the items that need to be reverse coded. This trick will work whenever you have a scale with N scale points that goes in integer steps from 1 to N (e.g., 1, 2, 3, 4, 5). You subtract Xs (each observed score) from N+1 to get the reversed value.</p>

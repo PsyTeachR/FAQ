@@ -22,9 +22,9 @@ das <- tribble(
   "S03", "I like dogs",                      1,
   "S03", "Dogs are fun",                     3,
   "S03", "Cats are better than dogs",        5,
-  "S02", "Dogs are helpful",                 2,
-  "S02", "Dogs are too noisy",               4,
-  "S02", "Dogs are too much responsibility", 5)
+  "S03", "Dogs are helpful",                 2,
+  "S03", "Dogs are too noisy",               4,
+  "S03", "Dogs are too much responsibility", 5)
 ```
 
 We will be working with a made-up scale with six items which measures how much respondents appreciate dogs. People respond to each of the six items on a 5 point likert scale, where 1=strongly disagree, 2=somewhat disagree, 3=neutral, 4=somewhat agree, 5=strongly agree.
