@@ -25,6 +25,7 @@ import-data-from-multiple-files
 detect-runs-in-a-sequence
 highlight-a-range-of-x-values-on-a-plot
 wrangling-questionnaire-data
+how-to-i-convert-string-values-to-numeric-values
 how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire
 microsoft-teams
 pinning-channels

@@ -24,7 +24,7 @@
 <meta name="author" content="Team #PsyTeachR" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2021-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="r-tips-and-tricks.html"><a href="r-tips-and-tricks.html#highlight-a-range-of-x-values-on-a-plot"><i class="fa fa-check"></i><b>3.5</b> Highlight a range of x-values on a plot</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html"><i class="fa fa-check"></i><b>4</b> Wrangling Questionnaire Data</a><ul>
-<li class="chapter" data-level="4.1" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html#how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire"><i class="fa fa-check"></i><b>4.1</b> How do I reverse score a subset of items on my questionnaire?</a></li>
+<li class="chapter" data-level="4.1" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html#how-to-i-convert-string-values-to-numeric-values"><i class="fa fa-check"></i><b>4.1</b> How to I convert string values to numeric values?</a></li>
+<li class="chapter" data-level="4.2" data-path="wrangling-questionnaire-data.html"><a href="wrangling-questionnaire-data.html#how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire"><i class="fa fa-check"></i><b>4.2</b> How do I reverse score a subset of items on my questionnaire?</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="microsoft-teams.html"><a href="microsoft-teams.html"><i class="fa fa-check"></i><b>5</b> Microsoft Teams</a><ul>
 <li class="chapter" data-level="5.1" data-path="microsoft-teams.html"><a href="microsoft-teams.html#pinning-channels"><i class="fa fa-check"></i><b>5.1</b> Pinning channels</a></li>
@@ -205,8 +206,257 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="wrangling-questionnaire-data" class="section level1">
 <h1><span class="header-section-number">Topic 4</span> Wrangling Questionnaire Data</h1>
+<div id="how-to-i-convert-string-values-to-numeric-values" class="section level2">
+<h2><span class="header-section-number">4.1</span> How to I convert string values to numeric values?</h2>
+<p>A very common situation is that you want to convert string values (“Almost Always”, “Frequently”) into numeric values (5, 4, etc) so that we can calculate a score.</p>
+<p>The solution I present here will use something called a “lookup table” that matches string values to numbers.</p>
+<p>First, let’s assume the following (made-up) questionnaire asks four questions about hygiene. When you bathe, how often do you:</p>
+<ol style="list-style-type: decimal">
+<li>Wash your legs?</li>
+<li>Wash behind your ears?</li>
+<li>Wash between your toes?</li>
+<li>Shampoo your hair?</li>
+</ol>
+<p>Let’s assume that answers are on a scale made up of the values “Never”, “Sometimes”, “Frequently”, “Always”, which we want to assign scores of 0, 1, 2, and 3 respectively.</p>
+<p>Here is some (also made-up) data from five participants, stored in a tibble named <code>dat</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">subj_id</th>
+<th align="left">wash_legs</th>
+<th align="left">wash_ears</th>
+<th align="left">wash_toes</th>
+<th align="left">shampoo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">S01</td>
+<td align="left">Sometimes</td>
+<td align="left">Never</td>
+<td align="left">Never</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="even">
+<td align="left">S02</td>
+<td align="left">Sometimes</td>
+<td align="left">Frequently</td>
+<td align="left">Frequently</td>
+<td align="left">Always</td>
+</tr>
+<tr class="odd">
+<td align="left">S03</td>
+<td align="left">Never</td>
+<td align="left">Never</td>
+<td align="left">Never</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="even">
+<td align="left">S04</td>
+<td align="left">Always</td>
+<td align="left">Always</td>
+<td align="left">Sometimes</td>
+<td align="left">Always</td>
+</tr>
+<tr class="odd">
+<td align="left">S05</td>
+<td align="left">Frequently</td>
+<td align="left">Sometimes</td>
+<td align="left">Never</td>
+<td align="left">Sometimes</td>
+</tr>
+</tbody>
+</table>
+<p>(If you want to make <code>dat</code> so you can follow along with the example by running the code in R, click the button below.)</p>
+<div class="webex-solution">
+<button>
+show me the R code to create the table ‘dat’
+</button>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
+<a class="sourceLine" id="cb24-2" title="2"></a>
+<a class="sourceLine" id="cb24-3" title="3">dat &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb24-4" title="4">  <span class="op">~</span>subj_id, <span class="op">~</span>wash_legs,   <span class="op">~</span>wash_ears,   <span class="op">~</span>wash_toes,   <span class="op">~</span>shampoo,</a>
+<a class="sourceLine" id="cb24-5" title="5">  <span class="st">&quot;S01&quot;</span>,    <span class="st">&quot;Sometimes&quot;</span>,  <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Frequently&quot;</span>,</a>
+<a class="sourceLine" id="cb24-6" title="6">  <span class="st">&quot;S02&quot;</span>,    <span class="st">&quot;Sometimes&quot;</span>,  <span class="st">&quot;Frequently&quot;</span>, <span class="st">&quot;Frequently&quot;</span>, <span class="st">&quot;Always&quot;</span>,</a>
+<a class="sourceLine" id="cb24-7" title="7">  <span class="st">&quot;S03&quot;</span>,    <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Frequently&quot;</span>,</a>
+<a class="sourceLine" id="cb24-8" title="8">  <span class="st">&quot;S04&quot;</span>,    <span class="st">&quot;Always&quot;</span>,     <span class="st">&quot;Always&quot;</span>,     <span class="st">&quot;Sometimes&quot;</span>,  <span class="st">&quot;Always&quot;</span>,</a>
+<a class="sourceLine" id="cb24-9" title="9">  <span class="st">&quot;S05&quot;</span>,    <span class="st">&quot;Frequently&quot;</span>, <span class="st">&quot;Sometimes&quot;</span>,  <span class="st">&quot;Never&quot;</span>,      <span class="st">&quot;Sometimes&quot;</span>)</a></code></pre></div>
+</div>
+<p>This data is in <em>wide</em> format: there is a single row for each participant with data for each question forming the columns. What we are going to do first is to convert this data from wide to long using <code>pivot_longer()</code>. (You’ll see why in a minute.)</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> wash_legs<span class="op">:</span>shampoo,</a>
+<a class="sourceLine" id="cb25-3" title="3">               <span class="dt">names_to =</span> <span class="st">&quot;question&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;response&quot;</span>)</a></code></pre></div>
+<p>Take a look at <code>dat_long</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">subj_id</th>
+<th align="left">question</th>
+<th align="left">response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">S01</td>
+<td align="left">wash_legs</td>
+<td align="left">Sometimes</td>
+</tr>
+<tr class="even">
+<td align="left">S01</td>
+<td align="left">wash_ears</td>
+<td align="left">Never</td>
+</tr>
+<tr class="odd">
+<td align="left">S01</td>
+<td align="left">wash_toes</td>
+<td align="left">Never</td>
+</tr>
+<tr class="even">
+<td align="left">S01</td>
+<td align="left">shampoo</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="odd">
+<td align="left">S02</td>
+<td align="left">wash_legs</td>
+<td align="left">Sometimes</td>
+</tr>
+<tr class="even">
+<td align="left">S02</td>
+<td align="left">wash_ears</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="odd">
+<td align="left">S02</td>
+<td align="left">wash_toes</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="even">
+<td align="left">S02</td>
+<td align="left">shampoo</td>
+<td align="left">Always</td>
+</tr>
+<tr class="odd">
+<td align="left">S03</td>
+<td align="left">wash_legs</td>
+<td align="left">Never</td>
+</tr>
+<tr class="even">
+<td align="left">S03</td>
+<td align="left">wash_ears</td>
+<td align="left">Never</td>
+</tr>
+<tr class="odd">
+<td align="left">S03</td>
+<td align="left">wash_toes</td>
+<td align="left">Never</td>
+</tr>
+<tr class="even">
+<td align="left">S03</td>
+<td align="left">shampoo</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="odd">
+<td align="left">S04</td>
+<td align="left">wash_legs</td>
+<td align="left">Always</td>
+</tr>
+<tr class="even">
+<td align="left">S04</td>
+<td align="left">wash_ears</td>
+<td align="left">Always</td>
+</tr>
+<tr class="odd">
+<td align="left">S04</td>
+<td align="left">wash_toes</td>
+<td align="left">Sometimes</td>
+</tr>
+<tr class="even">
+<td align="left">S04</td>
+<td align="left">shampoo</td>
+<td align="left">Always</td>
+</tr>
+<tr class="odd">
+<td align="left">S05</td>
+<td align="left">wash_legs</td>
+<td align="left">Frequently</td>
+</tr>
+<tr class="even">
+<td align="left">S05</td>
+<td align="left">wash_ears</td>
+<td align="left">Sometimes</td>
+</tr>
+<tr class="odd">
+<td align="left">S05</td>
+<td align="left">wash_toes</td>
+<td align="left">Never</td>
+</tr>
+<tr class="even">
+<td align="left">S05</td>
+<td align="left">shampoo</td>
+<td align="left">Sometimes</td>
+</tr>
+</tbody>
+</table>
+<p>Now we only have <em>one</em> variable we need to convert to numeric values (<code>response</code>) instead of the original four. There is an easy solution: we create a “lookup table” mapping the string values to the numeric values like so.</p>
+<p>But first let’s check what the unique string values are in the data. Our lookup table must match these <em>exactly</em> or the approach won’t work.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">dat_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(response) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;Sometimes&quot;  &quot;Never&quot;      &quot;Frequently&quot; &quot;Always&quot;</code></pre>
+<p>This step is important because sometimes these fields can have special characters that you don’t normally when you print out a table. The <code>distinct() %&gt;% pull()</code> pattern will give you those values in a way that makes them visible. For instance, a student once had values in the data like this:</p>
+<pre><code>[1] &quot;Somewhat\nInfrequently&quot; &quot;Somewhat\nFrequently&quot;   &quot;Very\nInfrequently&quot;
+[4] &quot;Almost\nNever&quot;          &quot;Very\nFrequently&quot;       &quot;Almost\nAlways&quot;</code></pre>
+<p>and the lookup table was constantly failing because the lookup table they created did not have the <code>\n</code> in the middle of each string. <em>Computers are very literal!</em></p>
+<p>OK now we’re ready to create our lookup table where we match these four values to numbers.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">lookup &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb29-2" title="2">  <span class="op">~</span>response, <span class="op">~</span>score,</a>
+<a class="sourceLine" id="cb29-3" title="3">  <span class="st">&quot;Never&quot;</span>,      <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb29-4" title="4">  <span class="st">&quot;Sometimes&quot;</span>,  <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb29-5" title="5">  <span class="st">&quot;Frequently&quot;</span>, <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb29-6" title="6">  <span class="st">&quot;always&quot;</span>,     <span class="dv">3</span>)</a></code></pre></div>
+<p>As the final step, we <code>inner_join()</code> the original table <code>dat_long</code> to <code>lookup</code> on the variable <code>response</code>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">joined &lt;-<span class="st"> </span><span class="kw">inner_join</span>(dat_long, lookup, <span class="dt">by =</span> <span class="st">&quot;response&quot;</span>)</a></code></pre></div>
+<p><strong>IMPORTANT</strong>: You should check to make sure that the join worked as intended. The values in the lookup table must <em>exactly</em> match the values in the <code>response</code> column of <code>dat_long</code>. It is easy to make a typo in the lookup table, and those values will be lost. An easy test is to make sure that the number of rows in <code>joined</code> matches the number of rows in <code>dat_long</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">stopifnot</span>(<span class="kw">nrow</span>(joined) <span class="op">==</span><span class="st"> </span><span class="kw">nrow</span>(dat_long))</a></code></pre></div>
+<p>The function <code>stopifnot()</code> will make our script fail if the stated condition (that both tables have the same number of rows) is not satisfied.</p>
+<p>Uh oh. Running it gives <code>Error: nrow(joined) == nrow(dat_long) is not TRUE</code>. The test failed, because I deliberately included a typo in the lookup table. Can you see it?</p>
+<div class="webex-solution">
+<button>
+what is it?
+</button>
+<p><code>always</code> should be <code>Always</code>. Capitalization matters!</p>
+</div>
+<p>So let’s fix our lookup table and then we should be good to go. Here is the full code for this demonstration:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> wash_legs<span class="op">:</span>shampoo,</a>
+<a class="sourceLine" id="cb32-3" title="3">               <span class="dt">names_to =</span> <span class="st">&quot;question&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb32-4" title="4"></a>
+<a class="sourceLine" id="cb32-5" title="5"><span class="co">## check for hidden values</span></a>
+<a class="sourceLine" id="cb32-6" title="6">dat_long <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-7" title="7"><span class="st">  </span><span class="kw">distinct</span>(response) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="st">  </span><span class="kw">pull</span>()</a>
+<a class="sourceLine" id="cb32-9" title="9"></a>
+<a class="sourceLine" id="cb32-10" title="10">lookup &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb32-11" title="11">  <span class="op">~</span>response, <span class="op">~</span>score,</a>
+<a class="sourceLine" id="cb32-12" title="12">  <span class="st">&quot;Never&quot;</span>,      <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb32-13" title="13">  <span class="st">&quot;Sometimes&quot;</span>,  <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb32-14" title="14">  <span class="st">&quot;Frequently&quot;</span>, <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb32-15" title="15">  <span class="st">&quot;Always&quot;</span>,     <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb32-16" title="16"></a>
+<a class="sourceLine" id="cb32-17" title="17">joined &lt;-<span class="st"> </span><span class="kw">inner_join</span>(dat_long, lookup, <span class="dt">by =</span> <span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb32-18" title="18"></a>
+<a class="sourceLine" id="cb32-19" title="19"><span class="co">## test whether the number of rows match</span></a>
+<a class="sourceLine" id="cb32-20" title="20"><span class="kw">stopifnot</span>(<span class="kw">nrow</span>(joined) <span class="op">==</span><span class="st"> </span><span class="kw">nrow</span>(dat_long))</a></code></pre></div>
+<p>You could then use</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">joined <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(subj_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">hygiene =</span> <span class="kw">sum</span>(score))</a></code></pre></div>
+<p>to calculate a score for each subject.</p>
+<p><em>August 18, 2021. -DB</em></p>
+</div>
 <div id="how-do-i-reverse-score-a-subset-of-items-on-my-questionnaire" class="section level2">
-<h2><span class="header-section-number">4.1</span> How do I reverse score a subset of items on my questionnaire?</h2>
+<h2><span class="header-section-number">4.2</span> How do I reverse score a subset of items on my questionnaire?</h2>
 <p>We will be working with a made-up scale with six items which measures how much respondents appreciate dogs. People respond to each of the six items on a 5 point likert scale, where 1=strongly disagree, 2=somewhat disagree, 3=neutral, 4=somewhat agree, 5=strongly agree.</p>
 <table>
 <caption><span id="tab:dog-scale">Table 4.1: </span>The Dog Appreciation Scale</caption>
@@ -269,28 +519,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <button>
 show me the code to create the table ‘das’
 </button>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
-<a class="sourceLine" id="cb25-2" title="2"></a>
-<a class="sourceLine" id="cb25-3" title="3">das &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
-<a class="sourceLine" id="cb25-4" title="4">  <span class="op">~</span>subj_id, <span class="op">~</span>item, <span class="op">~</span>score,</a>
-<a class="sourceLine" id="cb25-5" title="5">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb25-6" title="6">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb25-7" title="7">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb25-8" title="8">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-9" title="9">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb25-10" title="10">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb25-11" title="11">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb25-12" title="12">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-13" title="13">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb25-14" title="14">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-15" title="15">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb25-16" title="16">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb25-17" title="17">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb25-18" title="18">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb25-19" title="19">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb25-20" title="20">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb25-21" title="21">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb25-22" title="22">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
+<a class="sourceLine" id="cb35-2" title="2"></a>
+<a class="sourceLine" id="cb35-3" title="3">das &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb35-4" title="4">  <span class="op">~</span>subj_id, <span class="op">~</span>item, <span class="op">~</span>score,</a>
+<a class="sourceLine" id="cb35-5" title="5">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb35-6" title="6">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb35-7" title="7">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb35-8" title="8">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb35-9" title="9">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb35-10" title="10">  <span class="st">&quot;S01&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb35-11" title="11">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb35-12" title="12">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb35-13" title="13">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb35-14" title="14">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb35-15" title="15">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb35-16" title="16">  <span class="st">&quot;S02&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb35-17" title="17">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;I like dogs&quot;</span>,                      <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb35-18" title="18">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are fun&quot;</span>,                     <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb35-19" title="19">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Cats are better than dogs&quot;</span>,        <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb35-20" title="20">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are helpful&quot;</span>,                 <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb35-21" title="21">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too noisy&quot;</span>,               <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb35-22" title="22">  <span class="st">&quot;S03&quot;</span>, <span class="st">&quot;Dogs are too much responsibility&quot;</span>, <span class="dv">5</span>)</a></code></pre></div>
 </div>
 <p>First, we assume that you have your data in long format, like the table above. If you don’t, then please see the materials on reshaping from wide to long, such as <a href="https://psyteachr.github.io/msc-data-skills/tidyr.html#pivot_longer">this section from the MSC book</a>.</p>
 <p>We are going to use a programming trick that we’ll call “the N-plus-one-minus-X trick” to score the items that need to be reverse coded. This trick will work whenever you have a scale with N scale points that goes in integer steps from 1 to N (e.g., 1, 2, 3, 4, 5). You subtract Xs (each observed score) from N+1 to get the reversed value.</p>
@@ -300,31 +550,31 @@ show me the code to create the table ‘das’
 <p>and a 7 point scale is</p>
 <p><em>newscore = 8 - oldscore</em>.</p>
 <p>You can see this works using the following code:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">oldscores &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb26-2" title="2">newscores &lt;-<span class="st"> </span><span class="dv">6</span> <span class="op">-</span><span class="st"> </span>oldscores</a>
-<a class="sourceLine" id="cb26-3" title="3"></a>
-<a class="sourceLine" id="cb26-4" title="4"><span class="kw">rbind</span>(oldscores, newscores)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">oldscores &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb36-2" title="2">newscores &lt;-<span class="st"> </span><span class="dv">6</span> <span class="op">-</span><span class="st"> </span>oldscores</a>
+<a class="sourceLine" id="cb36-3" title="3"></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="kw">rbind</span>(oldscores, newscores)</a></code></pre></div>
 <pre><code>##           [,1] [,2] [,3] [,4] [,5]
 ## oldscores    1    2    3    4    5
 ## newscores    5    4    3    2    1</code></pre>
 <p><strong>Note: If your scale goes from 0 to N, then use N - X rather than (N + 1) - X to reverse score.</strong></p>
 <p>So we can see already that we need something like:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">das <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score)</a></code></pre></div>
 <p>but <em>only</em> for those items that need to be reverse scored. This is where <code>if_else()</code> comes in. Or, better said, where <code>if_else()</code> comes <code>%in%</code> (if you can pardon a bit of R humor).</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
-<a class="sourceLine" id="cb29-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
-<a class="sourceLine" id="cb29-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibilitiy&quot;</span>),</a>
-<a class="sourceLine" id="cb29-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
-<a class="sourceLine" id="cb29-6" title="6">                            score))</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
+<a class="sourceLine" id="cb39-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
+<a class="sourceLine" id="cb39-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibilitiy&quot;</span>),</a>
+<a class="sourceLine" id="cb39-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
+<a class="sourceLine" id="cb39-6" title="6">                            score))</a></code></pre></div>
 <p>The code above adds a new variable <code>newscore</code> which is the result of the <code>if_else()</code> command and stores the resulting table in <code>das_coded</code>. This command has the following syntax:</p>
 <p><code>if_else(condition, value_if_true, value_if_false)</code>.</p>
 <p>So, if the current value of item is found within the vector of options (that’s what the <code>%in%</code> operator does), the first expression evaluates to <code>TRUE</code>, and <code>6-score</code> is returned; if the first expression evaluates to <code>FALSE</code>, then <code>score</code> is returned.</p>
 <p>But whenever you recode or score a variable, you should <em>ALWAYS</em> check that your code is correct, because typos are likely. The best way to do this is to run a little test in the console. You can just print out the data from <code>das_coded</code>, or if you have a lot of data, use <code>distinct()</code> to look at check the distinct values observed in the data.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">das_coded <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">das_coded <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
 <pre><code>## # A tibble: 16 x 3
 ##    item                             score newscore
 ##    &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt;
@@ -353,15 +603,15 @@ no, I can’t see the problem
 <p><code>responsibility</code> is mistyped as <code>responsibilitiy</code></p>
 </div>
 <p>So the correct code is:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
-<a class="sourceLine" id="cb32-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
-<a class="sourceLine" id="cb32-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibility&quot;</span>),</a>
-<a class="sourceLine" id="cb32-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
-<a class="sourceLine" id="cb32-6" title="6">                            score))</a></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">das_coded <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">das_coded &lt;-<span class="st"> </span>das <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">newscore =</span> <span class="kw">if_else</span>(item <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cats are better than dogs&quot;</span>,</a>
+<a class="sourceLine" id="cb42-3" title="3">                                        <span class="st">&quot;Dogs are too noisy&quot;</span>,</a>
+<a class="sourceLine" id="cb42-4" title="4">                                        <span class="st">&quot;Dogs are too much responsibility&quot;</span>),</a>
+<a class="sourceLine" id="cb42-5" title="5">                            <span class="dv">6</span> <span class="op">-</span><span class="st"> </span>score,</a>
+<a class="sourceLine" id="cb42-6" title="6">                            score))</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">das_coded <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(item, score, newscore) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">print</span>(<span class="dt">n =</span> <span class="op">+</span><span class="ot">Inf</span>) <span class="co">## this makes sure *all* rows are printed, not just the first 20</span></a></code></pre></div>
 <pre><code>## # A tibble: 16 x 3
 ##    item                             score newscore
 ##    &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt;
@@ -382,6 +632,7 @@ no, I can’t see the problem
 ## 15 Dogs are helpful                     2        2
 ## 16 Dogs are too noisy                   4        2</code></pre>
 <p>We’ve done it! Now we can proceed to analyze our data further.</p>
+<p><em>January 2021. -DB</em></p>
 
 </div>
 </div>
