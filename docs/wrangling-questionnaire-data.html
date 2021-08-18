@@ -404,7 +404,7 @@ show me the R code to create the table ‘dat’
 <a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(response) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;Sometimes&quot;  &quot;Never&quot;      &quot;Frequently&quot; &quot;Always&quot;</code></pre>
-<p>This step is important because sometimes these fields can have special characters that you don’t normally when you print out a table. The <code>distinct() %&gt;% pull()</code> pattern will give you those values in a way that makes them visible. For instance, a student once had values in the data like this:</p>
+<p>This step is important because sometimes these fields can have special characters that you don’t normally see when you print out a table. The <code>distinct() %&gt;% pull()</code> pattern will give you those values in a way that makes them visible. For instance, a student once had values in the data like this:</p>
 <pre><code>[1] &quot;Somewhat\nInfrequently&quot; &quot;Somewhat\nFrequently&quot;   &quot;Very\nInfrequently&quot;
 [4] &quot;Almost\nNever&quot;          &quot;Very\nFrequently&quot;       &quot;Almost\nAlways&quot;</code></pre>
 <p>and the lookup table was constantly failing because the lookup table they created did not have the <code>\n</code> in the middle of each string. <em>Computers are very literal!</em></p>

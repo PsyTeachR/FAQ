@@ -100,7 +100,7 @@ dat_long %>%
 ```
 ## [1] "Sometimes"  "Never"      "Frequently" "Always"
 ```
-This step is important because sometimes these fields can have special characters that you don't normally when you print out a table. The `distinct() %>% pull()` pattern will give you those values in a way that makes them visible. For instance, a student once had values in the data like this:
+This step is important because sometimes these fields can have special characters that you don't normally see when you print out a table. The `distinct() %>% pull()` pattern will give you those values in a way that makes them visible. For instance, a student once had values in the data like this:
 
 ```
 [1] "Somewhat\nInfrequently" "Somewhat\nFrequently"   "Very\nInfrequently"
