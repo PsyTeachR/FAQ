@@ -2,7 +2,6 @@
 # do not edit!!!!!
 
 library(tidyverse)
-library(webex)
 
 # default knitr options
 knitr::opts_chunk$set(

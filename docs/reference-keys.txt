@@ -16,6 +16,7 @@ xcrun
 rtools
 catalina
 when-i-start-rstudio-i-get-the-error-fatal-error-unable-to-initialize-the-jit
+stringi-on-a-mac
 r-tips-and-tricks
 show-r-code-in-word
 save-plots-as-images

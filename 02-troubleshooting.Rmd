@@ -80,3 +80,14 @@ Thanks to Ashley McCluskey for figuring out where to get the command tools!
 This error crops up sometimes when using R on campus computers. This is due to a bug in your campus profile. Please speak to the [IT Helpdesk](https://www.gla.ac.uk/myglasgow/it/helpdesk/){target="_blank"}.
 
 *November 6, 2019. -DB*
+
+
+## stringi on a Mac
+
+If you're on a Mac and can't install tidyverse because it can't find `stringi`, and installing `stringi` fails because downloaded length doesn't equal reported length, try this: 
+
+```{r, eval = FALSE}
+install.packages("stringi", type="mac.binary")
+```
+
+*October 28, 2021. -LDB*
